@@ -55,6 +55,7 @@ struct AddGoalView: View {
                                     .foregroundColor(selectedIcon == icon ? .blue : .primary)
                             }
                             .onTapGesture {
+                                Haptics.light()
                                 selectedIcon = icon
                             }
                         }
@@ -73,6 +74,7 @@ struct AddGoalView: View {
                                         .stroke(selectedColor == colorHex ? Color.primary : Color.clear, lineWidth: 3)
                                 )
                                 .onTapGesture {
+                                    Haptics.light()
                                     selectedColor = colorHex
                                 }
                         }
@@ -101,6 +103,7 @@ struct AddGoalView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button("cancel") {
+                    Haptics.light()
                     dismiss()
                 },
                 trailing: Button("save") {
@@ -121,6 +124,8 @@ struct AddGoalView: View {
     
     private func saveGoal() {
         guard let amount = Decimal(string: targetAmount) else { return }
+        
+        Haptics.success()
         
         if let existingGoal = goal {
             var updatedGoal = existingGoal

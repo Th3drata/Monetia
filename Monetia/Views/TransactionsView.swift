@@ -13,6 +13,7 @@ struct TransactionsView: View {
                         ForEach(groupedTransactions[date] ?? []) { transaction in
                             TransactionRow(transaction: transaction)
                                 .onTapGesture {
+                                    Haptics.light()
                                     selectedTransaction = transaction
                                 }
                         }
@@ -25,7 +26,10 @@ struct TransactionsView: View {
             .navigationTitle("transactions")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingAddTransaction = true }) {
+                    Button(action: {
+                        Haptics.light()
+                        showingAddTransaction = true
+                    }) {
                         Image(systemName: "plus")
                     }
                 }
@@ -60,6 +64,7 @@ struct TransactionsView: View {
     }
     
     private func deleteTransactions(at offsets: IndexSet, in date: Date) {
+        Haptics.medium()
         let transactionsForDate = groupedTransactions[date] ?? []
         for index in offsets {
             let transaction = transactionsForDate[index]

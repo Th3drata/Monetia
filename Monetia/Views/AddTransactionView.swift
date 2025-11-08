@@ -27,6 +27,9 @@ struct AddTransactionView: View {
                         Text("transfer").tag(TransactionType.transfer)
                     }
                     .pickerStyle(.segmented)
+                    .onChange(of: selectedType) { _ in
+                        Haptics.selection()
+                    }
                 }
                 
                 if selectedType != .transfer {
@@ -76,6 +79,7 @@ struct AddTransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("cancel") {
+                        Haptics.light()
                         dismiss()
                     }
                 }
@@ -125,6 +129,7 @@ struct AddTransactionView: View {
             toAccountId: selectedToAccount?.id
         )
         
+        Haptics.success()
         dataManager.addTransaction(transaction)
         dismiss()
     }
@@ -206,6 +211,7 @@ struct EditTransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("cancel") {
+                        Haptics.light()
                         dismiss()
                     }
                 }
@@ -257,6 +263,7 @@ struct EditTransactionView: View {
         updatedTransaction.toAccountId = selectedToAccount?.id
         updatedTransaction.updatedAt = Date()
         
+        Haptics.success()
         dataManager.updateTransaction(updatedTransaction)
         dismiss()
     }

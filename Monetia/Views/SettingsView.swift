@@ -15,21 +15,30 @@ struct SettingsView: View {
         NavigationView {
             List {
                 Section(header: Text("data")) {
-                    Button(action: exportData) {
+                    Button(action: {
+                        Haptics.light()
+                        exportData()
+                    }) {
                         HStack {
                             Image(systemName: "square.and.arrow.up")
                             Text("export_data")
                         }
                     }
                     
-                    Button(action: backupToJSON) {
+                    Button(action: {
+                        Haptics.light()
+                        backupToJSON()
+                    }) {
                         HStack {
                             Image(systemName: "arrow.down.doc")
                             Text("backup_json")
                         }
                     }
                     
-                    Button(action: { showingRestoreSheet = true }) {
+                    Button(action: {
+                        Haptics.light()
+                        showingRestoreSheet = true
+                    }) {
                         HStack {
                             Image(systemName: "arrow.up.doc")
                             Text("restore_json")
@@ -67,6 +76,7 @@ struct SettingsView: View {
                         }
                         .pickerStyle(.menu)
                         .onChange(of: dataManager.theme) { newTheme in
+                            Haptics.selection()
                             dataManager.updateTheme(newTheme)
                         }
                     }
@@ -81,6 +91,7 @@ struct SettingsView: View {
                         }
                         .pickerStyle(.menu)
                         .onChange(of: dataManager.currency) { newCurrency in
+                            Haptics.selection()
                             dataManager.updateCurrency(newCurrency)
                         }
                     }
@@ -95,6 +106,7 @@ struct SettingsView: View {
                         }
                         .pickerStyle(.menu)
                         .onChange(of: dataManager.language) { newLanguage in
+                            Haptics.selection()
                             dataManager.updateLanguage(newLanguage)
                         }
                     }
@@ -250,7 +262,10 @@ struct CategoriesManagementView: View {
         }
         .navigationTitle("categories")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: Button(action: { showingAddCategory = true }) {
+        .navigationBarItems(trailing: Button(action: {
+            Haptics.light()
+            showingAddCategory = true
+        }) {
             Image(systemName: "plus")
         })
         .sheet(isPresented: $showingAddCategory) {
@@ -259,6 +274,7 @@ struct CategoriesManagementView: View {
     }
     
     private func deleteCategory(at offsets: IndexSet) {
+        Haptics.medium()
         for index in offsets {
             let category = dataManager.categories[index]
             if !category.isDefault {
@@ -341,6 +357,7 @@ struct AddCategoryView: View {
                                     .foregroundColor(selectedIcon == icon ? .blue : .primary)
                             }
                             .onTapGesture {
+                                Haptics.light()
                                 selectedIcon = icon
                             }
                         }
@@ -359,6 +376,7 @@ struct AddCategoryView: View {
                                         .stroke(selectedColor == colorHex ? Color.primary : Color.clear, lineWidth: 3)
                                 )
                                 .onTapGesture {
+                                    Haptics.light()
                                     selectedColor = colorHex
                                 }
                         }
@@ -387,6 +405,7 @@ struct AddCategoryView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button("cancel") {
+                    Haptics.light()
                     dismiss()
                 },
                 trailing: Button("save") {
@@ -398,6 +417,7 @@ struct AddCategoryView: View {
     }
     
     private func saveCategory() {
+        Haptics.success()
         let category = Category(
             name: name,
             icon: selectedIcon,
@@ -450,6 +470,7 @@ struct BackupSheet: View {
                     }
                     .padding(.horizontal)
                     .simultaneousGesture(TapGesture().onEnded {
+                        Haptics.success()
                         UserDefaults.standard.set(Date(), forKey: "lastBackupDate")
                         onBackupComplete()
                     })
@@ -497,6 +518,7 @@ struct BackupSheetLegacy: View {
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                            let window = windowScene.windows.first,
                            let rootVC = window.rootViewController {
+                            Haptics.success()
                             rootVC.present(activityVC, animated: true)
                             UserDefaults.standard.set(Date(), forKey: "lastBackupDate")
                             onBackupComplete()
@@ -592,9 +614,15 @@ struct RestoreSheet: View {
             do {
                 let jsonString = try String(contentsOf: url, encoding: .utf8)
                 let success = dataManager.importFromJSON(jsonString)
+                if success {
+                    Haptics.success()
+                } else {
+                    Haptics.error()
+                }
                 onRestoreComplete(success)
                 dismiss()
             } catch {
+                Haptics.error()
                 onRestoreComplete(false)
                 dismiss()
             }
@@ -656,9 +684,15 @@ struct RestoreSheetLegacy: View {
                     do {
                         let jsonString = try String(contentsOf: url, encoding: .utf8)
                         let success = dataManager.importFromJSON(jsonString)
+                        if success {
+                            Haptics.success()
+                        } else {
+                            Haptics.error()
+                        }
                         onRestoreComplete(success)
                         dismiss()
                     } catch {
+                        Haptics.error()
                         onRestoreComplete(false)
                         dismiss()
                     }

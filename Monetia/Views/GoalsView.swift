@@ -35,7 +35,10 @@ struct GoalsView: View {
                 }
             }
             .navigationTitle("goals")
-            .navigationBarItems(trailing: Button(action: { showingAddGoal = true }) {
+            .navigationBarItems(trailing: Button(action: {
+                Haptics.light()
+                showingAddGoal = true
+            }) {
                 Image(systemName: "plus")
             })
             .sheet(isPresented: $showingAddGoal) {
@@ -45,6 +48,7 @@ struct GoalsView: View {
     }
     
     private func deleteGoals(at offsets: IndexSet) {
+        Haptics.medium()
         for index in offsets {
             let goal = dataManager.goals[index]
             dataManager.deleteGoal(goal)
@@ -182,7 +186,10 @@ struct GoalDetailView: View {
                 }
                 
                 Section {
-                    Button(action: { showingAddMoney = true }) {
+                    Button(action: {
+                        Haptics.light()
+                        showingAddMoney = true
+                    }) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
                             Text("add_money")
@@ -191,7 +198,10 @@ struct GoalDetailView: View {
                         .foregroundColor(.blue)
                     }
                     
-                    Button(action: { showingEditGoal = true }) {
+                    Button(action: {
+                        Haptics.light()
+                        showingEditGoal = true
+                    }) {
                         HStack {
                             Image(systemName: "pencil")
                             Text("edit_goal")
@@ -206,7 +216,16 @@ struct GoalDetailView: View {
         .sheet(isPresented: $showingAddMoney) {
             AddMoneySheet(goal: currentGoal ?? goal, amountToAdd: $amountToAdd) {
                 if let amount = Decimal(string: amountToAdd) {
+                    let wasCompleted = currentGoal?.isCompleted ?? false
                     dataManager.addMoneyToGoal(goalId: goal.id, amount: amount)
+                    let isNowCompleted = dataManager.goals.first { $0.id == goal.id }?.isCompleted ?? false
+                    
+                    if !wasCompleted && isNowCompleted {
+                        Haptics.success()
+                    } else {
+                        Haptics.medium()
+                    }
+                    
                     amountToAdd = ""
                     showingAddMoney = false
                 }
@@ -256,6 +275,7 @@ struct AddMoneySheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button("cancel") {
+                    Haptics.light()
                     dismiss()
                 },
                 trailing: Button("add") {
