@@ -437,6 +437,27 @@ struct BackupSheet: View {
     @Environment(\.dismiss) var dismiss
     let onBackupComplete: () -> Void
     
+    private func createBackupFile() -> URL? {
+        guard let jsonString = dataManager.exportToJSON() else { return nil }
+        
+        let fileName = "Monetia_Backup_\(dateFormatter.string(from: Date())).json"
+        let tempDir = FileManager.default.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent(fileName)
+        
+        do {
+            try jsonString.write(to: fileURL, atomically: true, encoding: .utf8)
+            return fileURL
+        } catch {
+            return nil
+        }
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        return formatter
+    }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -453,9 +474,9 @@ struct BackupSheet: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
-                if let jsonData = dataManager.exportToJSON() {
+                if let fileURL = createBackupFile() {
                     ShareLink(
-                        item: jsonData,
+                        item: fileURL,
                         preview: SharePreview(
                             "Monetia Backup",
                             image: Image(systemName: "doc.text")
@@ -496,6 +517,27 @@ struct BackupSheetLegacy: View {
     @Environment(\.dismiss) var dismiss
     let onBackupComplete: () -> Void
     
+    private func createBackupFile() -> URL? {
+        guard let jsonString = dataManager.exportToJSON() else { return nil }
+        
+        let fileName = "Monetia_Backup_\(dateFormatter.string(from: Date())).json"
+        let tempDir = FileManager.default.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent(fileName)
+        
+        do {
+            try jsonString.write(to: fileURL, atomically: true, encoding: .utf8)
+            return fileURL
+        } catch {
+            return nil
+        }
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        return formatter
+    }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
@@ -512,9 +554,9 @@ struct BackupSheetLegacy: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
-                if let jsonData = dataManager.exportToJSON() {
+                if let fileURL = createBackupFile() {
                     Button(action: {
-                        let activityVC = UIActivityViewController(activityItems: [jsonData], applicationActivities: nil)
+                        let activityVC = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                            let window = windowScene.windows.first,
                            let rootVC = window.rootViewController {
@@ -611,6 +653,19 @@ struct RestoreSheet: View {
         switch result {
         case .success(let urls):
             guard let url = urls.first else { return }
+            
+            // Start accessing security-scoped resource
+            guard url.startAccessingSecurityScopedResource() else {
+                Haptics.error()
+                onRestoreComplete(false)
+                dismiss()
+                return
+            }
+            
+            defer {
+                url.stopAccessingSecurityScopedResource()
+            }
+            
             do {
                 let jsonString = try String(contentsOf: url, encoding: .utf8)
                 let success = dataManager.importFromJSON(jsonString)
@@ -627,6 +682,7 @@ struct RestoreSheet: View {
                 dismiss()
             }
         case .failure:
+            Haptics.error()
             onRestoreComplete(false)
             dismiss()
         }
@@ -681,6 +737,18 @@ struct RestoreSheetLegacy: View {
             })
             .sheet(isPresented: $showingDocumentPicker) {
                 DocumentPicker { url in
+                    // Start accessing security-scoped resource
+                    guard url.startAccessingSecurityScopedResource() else {
+                        Haptics.error()
+                        onRestoreComplete(false)
+                        dismiss()
+                        return
+                    }
+                    
+                    defer {
+                        url.stopAccessingSecurityScopedResource()
+                    }
+                    
                     do {
                         let jsonString = try String(contentsOf: url, encoding: .utf8)
                         let success = dataManager.importFromJSON(jsonString)
