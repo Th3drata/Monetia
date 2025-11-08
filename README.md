@@ -1,6 +1,6 @@
 # Monetia
 
-**Version 1.1** - A comprehensive iOS expense tracking application built with SwiftUI, designed to help users manage their personal finances with ease.
+**Version 1.2** - A comprehensive iOS expense tracking application built with SwiftUI, designed to help users manage their personal finances with ease.
 
 ## 🎯 Project Overview
 
@@ -36,8 +36,12 @@ Monetia is a feature-rich financial management app that allows users to track in
 - **Quick Transaction Entry**: Add transactions in seconds with amount, date, and type
 - **Categorization**: Organize transactions using predefined categories (Food, Housing, Transportation, Entertainment, etc.)
 - **Multiple Accounts**: Create and manage different accounts (Checking, Card, Cash, Savings)
+- **Account Management**: Delete accounts via long-press context menu 🆕
 - **Account Transfers**: Transfer money between accounts seamlessly
 - **Transaction History**: View all transactions grouped by date with easy editing and deletion
+- **Recurring Transactions**: Set up daily, weekly, monthly, or yearly recurring transactions 🆕
+- **Upcoming Transactions**: View scheduled future transactions for the current month 🆕
+- **Recurrence Control**: Activate/deactivate recurrence on existing transactions 🆕
 
 #### 2. Financial Visualization
 - **Current Balance Display**: View total balance across all accounts
@@ -72,6 +76,8 @@ Monetia is a feature-rich financial management app that allows users to track in
 - **Theme Support**: Choose between System, Light, or Dark mode 🆕
 - **Responsive Layout**: Optimized for all iPhone sizes
 - **Custom App Icon**: Beautiful gradient icon design
+- **Haptic Feedback**: Tactile responses throughout the app for better UX 🆕
+- **macOS Support**: Full Mac Catalyst compatibility 🆕
 
 #### 7. Settings & Configuration
 - **Category Management**: Create, edit, and delete custom categories with 42+ icons
@@ -81,7 +87,6 @@ Monetia is a feature-rich financial management app that allows users to track in
 - **Statistics**: View transaction and account counts
 
 ### Future Enhancements
-- Recurring transactions
 - Receipt photo attachments
 - Home screen widgets
 - Advanced analytics and trends
@@ -200,7 +205,23 @@ When you first launch the app:
 2. Tap **+** to add a new transaction
 3. Enter amount, select type (Income/Expense/Transfer), category, and account
 4. Add optional notes
-5. Tap **Save**
+5. **For Recurring Transactions**: Toggle "Recurring Transaction" and select frequency (daily/weekly/monthly/yearly)
+   - For weekly: Choose the day of the week
+   - For monthly: Choose the day of the month
+   - Optionally set an end date
+6. Tap **Save**
+
+### Viewing Upcoming Transactions
+1. Go to **Transactions** tab
+2. Tap **Upcoming** button in the navigation bar
+3. See all scheduled transactions for the current month
+4. Future transactions are shown with "Scheduled" badge
+
+### Managing Recurring Transactions
+1. Tap on any recurring transaction
+2. Toggle "Recurrence Active" off to disable future occurrences
+3. Confirm to delete all scheduled future transactions
+4. The current transaction remains, but no new ones will be generated
 
 ### Setting Budgets
 1. Go to **Budget** tab
@@ -291,9 +312,18 @@ When you first launch the app:
 - [x] Build script for IPA generation
 - [x] JSON backup/restore functionality (no paid Apple Developer account needed)
 
-### Version 1.2 (Next)
+### Version 1.2 ✅ (Current Release)
+- [x] Recurring transactions (daily/weekly/monthly/yearly)
+- [x] Upcoming transactions view
+- [x] Recurrence activation/deactivation toggle
+- [x] Account deletion via context menu
+- [x] Haptic feedback throughout the app
+- [x] macOS support via Mac Catalyst
+- [x] Fixed initial account balance in total balance calculation
+- [x] Day of week translation in recurrence picker
+
+### Version 1.3 (Next)
 - [ ] Core Data migration for better performance
-- [ ] Recurring transactions
 - [ ] Receipt photo attachments
 - [ ] Budget alerts/notifications
 

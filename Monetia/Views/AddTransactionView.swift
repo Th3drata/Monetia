@@ -97,13 +97,13 @@ struct AddTransactionView: View {
                         // Day of week selection (for weekly)
                         if recurrenceFrequency == .weekly {
                             Picker("day_of_week", selection: $selectedDayOfWeek) {
-                                Text("sunday").tag(1)
-                                Text("monday").tag(2)
-                                Text("tuesday").tag(3)
-                                Text("wednesday").tag(4)
-                                Text("thursday").tag(5)
-                                Text("friday").tag(6)
-                                Text("saturday").tag(7)
+                                Text(NSLocalizedString("sunday", comment: "")).tag(1)
+                                Text(NSLocalizedString("monday", comment: "")).tag(2)
+                                Text(NSLocalizedString("tuesday", comment: "")).tag(3)
+                                Text(NSLocalizedString("wednesday", comment: "")).tag(4)
+                                Text(NSLocalizedString("thursday", comment: "")).tag(5)
+                                Text(NSLocalizedString("friday", comment: "")).tag(6)
+                                Text(NSLocalizedString("saturday", comment: "")).tag(7)
                             }
                         }
                         

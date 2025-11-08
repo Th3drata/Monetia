@@ -514,30 +514,8 @@ class DataManager: ObservableObject {
     // MARK: - Analytics
     
     func getTotalBalance() -> Decimal {
-        // Recalculate balance from past transactions only
-        var balances: [UUID: Decimal] = [:]
-        
-        // Start with initial balances (would need to be stored separately in real app)
-        for account in accounts {
-            balances[account.id] = 0
-        }
-        
-        // Add only past transactions
-        for transaction in transactions where transaction.date <= Date() {
-            switch transaction.type {
-            case .income:
-                balances[transaction.accountId, default: 0] += transaction.amount
-            case .expense:
-                balances[transaction.accountId, default: 0] -= transaction.amount
-            case .transfer:
-                balances[transaction.accountId, default: 0] -= transaction.amount
-                if let toAccountId = transaction.toAccountId {
-                    balances[toAccountId, default: 0] += transaction.amount
-                }
-            }
-        }
-        
-        return balances.values.reduce(0, +)
+        // Sum all account balances (already updated by transactions)
+        return accounts.reduce(0) { $0 + $1.balance }
     }
     
     func getIncomeForPeriod(_ period: DateInterval) -> Decimal {
