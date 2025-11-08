@@ -1,0 +1,144 @@
+/* General */
+"cancel" = "Annuler";
+"save" = "Enregistrer";
+"done" = "Terminé";
+"delete" = "Supprimer";
+"edit" = "Modifier";
+"add" = "Ajouter";
+
+/* Tab Bar */
+"home" = "Accueil";
+"transactions" = "Transactions";
+"budget" = "Budget";
+"settings" = "Paramètres";
+
+/* Home View */
+"total_balance" = "Solde Total";
+"income" = "Revenus";
+"expenses" = "Dépenses";
+"expenses_by_category" = "Dépenses par Catégorie";
+"accounts" = "Comptes";
+"no_accounts" = "Aucun compte pour le moment";
+"period_thisWeek" = "Cette Semaine";
+"period_thisMonth" = "Ce Mois";
+"period_lastMonth" = "Mois Dernier";
+"period_thisYear" = "Cette Année";
+
+/* Account Types */
+"account_type_checking" = "Compte Courant";
+"account_type_card" = "Carte";
+"account_type_cash" = "Espèces";
+"account_type_savings" = "Épargne";
+
+/* Categories */
+"food" = "Alimentation";
+"housing" = "Logement";
+"transportation" = "Mobilité";
+"entertainment" = "Divertissement";
+"utilities" = "Services";
+"healthcare" = "Santé";
+"shopping" = "Achats";
+"education" = "Éducation";
+"salary" = "Salaire";
+"other" = "Autres";
+
+/* Transaction Types */
+"transaction_type_income" = "Revenu";
+"transaction_type_expense" = "Dépense";
+"transaction_type_transfer" = "Virement";
+
+/* Transactions */
+"add_transaction" = "Ajouter Transaction";
+"edit_transaction" = "Modifier Transaction";
+"amount" = "Montant";
+"type" = "Type";
+"category" = "Catégorie";
+"account" = "Compte";
+"from_account" = "Depuis le Compte";
+"to_account" = "Vers le Compte";
+"date" = "Date";
+"notes" = "Notes";
+"select_category" = "Sélectionner Catégorie";
+"select_account" = "Sélectionner Compte";
+"expense" = "Dépense";
+"transfer" = "Virement";
+
+/* Budget */
+"no_budgets" = "Aucun budget pour le moment";
+"create_first_budget" = "Créer Votre Premier Budget";
+"add_budget" = "Ajouter Budget";
+"budget_details" = "Détails du Budget";
+"budget_name" = "Nom du Budget";
+"period" = "Période";
+"scope" = "Portée";
+"overall_budget" = "Budget Global";
+"budget_exceeded" = "Budget Dépassé !";
+"remaining" = "Restant";
+
+/* Budget Periods */
+"budget_period_daily" = "Quotidien";
+"budget_period_weekly" = "Hebdomadaire";
+"budget_period_monthly" = "Mensuel";
+"budget_period_yearly" = "Annuel";
+
+/* Accounts */
+"add_account" = "Ajouter Compte";
+"account_details" = "Détails du Compte";
+"account_name" = "Nom du Compte";
+"account_type" = "Type de Compte";
+"initial_balance" = "Solde Initial";
+"currency" = "Devise";
+"checking" = "Compte Courant";
+"card" = "Carte";
+"cash" = "Espèces";
+"savings" = "Épargne";
+
+/* Settings */
+"data" = "Données";
+"export_data" = "Exporter les Données";
+"backup_to_icloud" = "Sauvegarder sur iCloud";
+"restore_from_icloud" = "Restaurer depuis iCloud";
+"categories" = "Catégories";
+"manage_categories" = "Gérer les Catégories";
+"preferences" = "Préférences";
+"appearance" = "Apparence";
+"system" = "Système";
+"light" = "Clair";
+"dark" = "Sombre";
+"default_currency" = "Devise par Défaut";
+"language" = "Langue";
+"about" = "À Propos";
+"version" = "Version";
+"transactions_count" = "Transactions";
+"accounts_count" = "Comptes";
+
+/* Export */
+"export" = "Exporter";
+"export_ready" = "Export Prêt";
+"export_instructions" = "Vos données de transaction ont été préparées. Vous pouvez les partager ou les enregistrer sur votre appareil.";
+"share_csv" = "Partager Fichier CSV";
+
+/* Categories Management */
+"add_category" = "Ajouter Catégorie";
+"category_name" = "Nom de Catégorie";
+"name" = "Nom";
+"icon" = "Icône";
+"color" = "Couleur";
+"preview" = "Aperçu";
+"default" = "Par défaut";
+
+/* Goals */
+"goals" = "Objectifs";
+"no_goals" = "Aucun objectif pour le moment";
+"create_first_goal" = "Créer Votre Premier Objectif";
+"add_goal" = "Ajouter Objectif";
+"edit_goal" = "Modifier Objectif";
+"goal_name" = "Nom de l'Objectif";
+"target_amount" = "Montant Cible";
+"goal_details" = "Détails de l'Objectif";
+"current" = "Actuel";
+"target" = "Cible";
+"progress" = "Progrès";
+"goal_completed" = "Objectif Atteint !";
+"add_money" = "Ajouter de l'Argent";
+"new_total" = "Nouveau Total";

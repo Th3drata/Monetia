@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		556227E62EBFA95600599D82 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556227E52EBFA95600599D82 /* LocalizationManager.swift */; };
+		556227EC2EBFABF300599D82 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556227EB2EBFABF300599D82 /* Media.xcassets */; };
+		55C4552C2EBF9F480038F6A9 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552B2EBF9F480038F6A9 /* Goal.swift */; };
+		55C4552F2EBF9F720038F6A9 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */; };
+		55C455302EBF9F720038F6A9 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552E2EBF9F720038F6A9 /* GoalsView.swift */; };
+		AA0000000000000000000001 /* SpendingTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* SpendingTrackerApp.swift */; };
+		AA0000000000000000000002 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000002 /* DataManager.swift */; };
+		AA0000000000000000000003 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000003 /* Category.swift */; };
+		AA0000000000000000000004 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* Budget.swift */; };
+		AA0000000000000000000005 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* Transaction.swift */; };
+		AA0000000000000000000006 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* Account.swift */; };
+		AA0000000000000000000007 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000007 /* SettingsView.swift */; };
+		AA0000000000000000000008 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000008 /* HomeView.swift */; };
+		AA0000000000000000000009 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000009 /* TransactionsView.swift */; };
+		AA000000000000000000000A /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000A /* BudgetView.swift */; };
+		AA000000000000000000000B /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000B /* AddTransactionView.swift */; };
+		AA000000000000000000000C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000C /* ContentView.swift */; };
+		AA000000000000000000000D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000D /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		556227E52EBFA95600599D82 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		556227EB2EBFABF300599D82 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		55C4552B2EBF9F480038F6A9 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
+		55C4552E2EBF9F720038F6A9 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000001 /* SpendingTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTrackerApp.swift; sourceTree = "<group>"; };
+		BB0000000000000000000002 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		BB0000000000000000000003 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		BB0000000000000000000004 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
+		BB0000000000000000000005 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		BB0000000000000000000006 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		BB0000000000000000000007 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000008 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BB0000000000000000000009 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		BB000000000000000000000A /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		BB000000000000000000000B /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
+		BB000000000000000000000C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BB000000000000000000000E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BB000000000000000000000F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CC0000000000000000000001 /* SpendingTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendingTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD0000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EE0000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				556227EB2EBFABF300599D82 /* Media.xcassets */,
+				EE0000000000000000000002 /* SpendingTracker */,
+				EE0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EE0000000000000000000002 /* SpendingTracker */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000000000000000000001 /* SpendingTrackerApp.swift */,
+				EE0000000000000000000004 /* Managers */,
+				EE0000000000000000000005 /* Models */,
+				EE0000000000000000000006 /* Views */,
+				EE0000000000000000000007 /* Localization */,
+			);
+			path = SpendingTracker;
+			sourceTree = "<group>";
+		};
+		EE0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC0000000000000000000001 /* SpendingTracker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EE0000000000000000000004 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				556227E52EBFA95600599D82 /* LocalizationManager.swift */,
+				BB0000000000000000000002 /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		EE0000000000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				55C4552B2EBF9F480038F6A9 /* Goal.swift */,
+				BB0000000000000000000003 /* Category.swift */,
+				BB0000000000000000000004 /* Budget.swift */,
+				BB0000000000000000000005 /* Transaction.swift */,
+				BB0000000000000000000006 /* Account.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EE0000000000000000000006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */,
+				55C4552E2EBF9F720038F6A9 /* GoalsView.swift */,
+				BB0000000000000000000007 /* SettingsView.swift */,
+				BB0000000000000000000008 /* HomeView.swift */,
+				BB0000000000000000000009 /* TransactionsView.swift */,
+				BB000000000000000000000A /* BudgetView.swift */,
+				BB000000000000000000000B /* AddTransactionView.swift */,
+				BB000000000000000000000C /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EE0000000000000000000007 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				BB000000000000000000000D /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF0000000000000000000001 /* SpendingTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXNativeTarget "SpendingTracker" */;
+			buildPhases = (
+				DD0000000000000000000002 /* Sources */,
+				DD0000000000000000000001 /* Frameworks */,
+				DD0000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpendingTracker;
+			productName = SpendingTracker;
+			productReference = CC0000000000000000000001 /* SpendingTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF0000000000000000000003 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					FF0000000000000000000001 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+				};
+			};
+			buildConfigurationList = FF0000000000000000000004 /* Build configuration list for PBXProject "SpendingTracker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				fr,
+				Base,
+			);
+			mainGroup = EE0000000000000000000001;
+			productRefGroup = EE0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF0000000000000000000001 /* SpendingTracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD0000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				556227EC2EBFABF300599D82 /* Media.xcassets in Resources */,
+				AA000000000000000000000D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD0000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55C4552F2EBF9F720038F6A9 /* AddGoalView.swift in Sources */,
+				55C455302EBF9F720038F6A9 /* GoalsView.swift in Sources */,
+				AA0000000000000000000001 /* SpendingTrackerApp.swift in Sources */,
+				AA0000000000000000000002 /* DataManager.swift in Sources */,
+				AA0000000000000000000003 /* Category.swift in Sources */,
+				AA0000000000000000000004 /* Budget.swift in Sources */,
+				AA0000000000000000000005 /* Transaction.swift in Sources */,
+				AA0000000000000000000006 /* Account.swift in Sources */,
+				556227E62EBFA95600599D82 /* LocalizationManager.swift in Sources */,
+				AA0000000000000000000007 /* SettingsView.swift in Sources */,
+				AA0000000000000000000008 /* HomeView.swift in Sources */,
+				55C4552C2EBF9F480038F6A9 /* Goal.swift in Sources */,
+				AA0000000000000000000009 /* TransactionsView.swift in Sources */,
+				AA000000000000000000000A /* BudgetView.swift in Sources */,
+				AA000000000000000000000B /* AddTransactionView.swift in Sources */,
+				AA000000000000000000000C /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BB000000000000000000000D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB000000000000000000000E /* en */,
+				BB000000000000000000000F /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		GG0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4DVLAK4L8N;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		GG0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4DVLAK4L8N;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		GG0000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spendingtracker.SpendingTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		GG0000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spendingtracker.SpendingTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF0000000000000000000002 /* Build configuration list for PBXNativeTarget "SpendingTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				GG0000000000000000000003 /* Debug */,
+				GG0000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF0000000000000000000004 /* Build configuration list for PBXProject "SpendingTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				GG0000000000000000000001 /* Debug */,
+				GG0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF0000000000000000000003 /* Project object */;
+}

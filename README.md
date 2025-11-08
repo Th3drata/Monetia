@@ -1,14 +1,12 @@
 # Spending Tracker - Money Flow
 
-A comprehensive iOS expense tracking application built with SwiftUI, designed to help users manage their personal finances with ease.
+**Version 1.1** - A comprehensive iOS expense tracking application built with SwiftUI, designed to help users manage their personal finances with ease.
 
 ## 🎯 Project Overview
 
 Spending Tracker is a feature-rich financial management app that allows users to track income and expenses, visualize their financial situation, manage budgets, and maintain multiple accounts. The app emphasizes simplicity and efficiency while providing powerful insights into spending habits.
 
 ## ✨ Features
-
-### MVP Features
 
 #### 1. Transaction Management
 - **Quick Transaction Entry**: Add transactions in seconds with amount, date, and type
@@ -36,16 +34,25 @@ Spending Tracker is a feature-rich financial management app that allows users to
 - **Data Persistence**: Automatic saving of all changes
 - **iCloud Sync**: Placeholder for future cloud synchronization
 
-#### 5. User Interface
-- **Clean Design**: Modern, intuitive interface using SwiftUI
-- **Tab Navigation**: Easy access to Home, Transactions, Budget, and Settings
-- **Dark Mode Support**: Respects system appearance settings
-- **Responsive Layout**: Optimized for all iPhone sizes
+#### 5. Savings Goals 🆕
+- **Goal Creation**: Set savings goals with custom icons and colors
+- **Progress Tracking**: Visual progress bars with completion indicators
+- **Flexible Contributions**: Add money to goals at any time
+- **Goal Management**: Edit, delete, and track multiple goals simultaneously
+- **Achievement Badges**: Celebrate completed goals with visual indicators
 
-#### 6. Settings & Configuration
-- **Category Management**: Create, edit, and delete custom categories
-- **Multi-Language Support**: Available in English and French
-- **Currency Support**: Default EUR currency (extensible to others)
+#### 6. User Interface
+- **Clean Design**: Modern, intuitive interface using SwiftUI
+- **Tab Navigation**: Easy access to Home, Transactions, Budget, Goals, and Settings
+- **Theme Support**: Choose between System, Light, or Dark mode 🆕
+- **Responsive Layout**: Optimized for all iPhone sizes
+- **Custom App Icon**: Beautiful gradient icon design
+
+#### 7. Settings & Configuration
+- **Category Management**: Create, edit, and delete custom categories with 42+ icons
+- **Multi-Language Support**: Dynamic language switching (English, French, Auto) 🆕
+- **Currency Support**: 6 currencies (EUR, USD, GBP, CHF, JPY, CNY) 🆕
+- **Theme Customization**: System, Light, or Dark appearance 🆕
 - **Statistics**: View transaction and account counts
 
 ### Future Enhancements
@@ -54,9 +61,9 @@ Spending Tracker is a feature-rich financial management app that allows users to
 - Home screen widgets
 - Advanced analytics and trends
 - Push notifications for budget alerts
-- Multi-currency with exchange rates
+- Multi-currency with live exchange rates
 - Bank integration
-- Dark/light theme customization
+- Biometric authentication
 
 ## 🏗 Architecture
 
@@ -75,16 +82,22 @@ SpendingTracker/
 │   ├── Account.swift              # Account data model
 │   ├── Transaction.swift          # Transaction data model
 │   ├── Category.swift             # Category data model
-│   └── Budget.swift               # Budget data model
+│   ├── Budget.swift               # Budget data model
+│   └── Goal.swift                 # Savings goal model 🆕
 ├── Managers/
-│   └── DataManager.swift          # Central data management
+│   ├── DataManager.swift          # Central data management
+│   └── LocalizationManager.swift # Language switching 🆕
 ├── Views/
-│   ├── ContentView.swift          # Main tab view
+│   ├── ContentView.swift          # Main tab view (5 tabs)
 │   ├── HomeView.swift             # Dashboard and overview
 │   ├── TransactionsView.swift    # Transaction list
 │   ├── AddTransactionView.swift  # Transaction forms
 │   ├── BudgetView.swift           # Budget management
+│   ├── GoalsView.swift            # Savings goals tracking 🆕
+│   ├── AddGoalView.swift          # Goal creation form 🆕
 │   └── SettingsView.swift         # Settings and export
+├── Media.xcassets/
+│   └── AppIcon.appiconset         # App icon assets 🆕
 └── Localization/
     ├── en.lproj/
     │   └── Localizable.strings    # English strings
@@ -137,6 +150,16 @@ open SpendingTracker.xcodeproj
 - Select a simulator or connected device
 - Press `Cmd + R` to build and run
 
+### Building IPA for Distribution
+
+A build script is provided to generate an IPA file:
+
+```bash
+./build_ipa.sh
+```
+
+The IPA will be created at `~/Desktop/build/SpendingTracker.ipa`
+
 ### First Time Setup
 
 When you first launch the app:
@@ -184,10 +207,17 @@ When you first launch the app:
 4. Choose a color
 5. Preview and save
 
-### Modifying Default Currency
-Currently set to EUR. To change:
-- Edit the default currency in `Account` model
-- Update currency displays in views
+### Changing Currency
+1. Go to **Settings** → **Preferences**
+2. Tap **Default Currency**
+3. Select from EUR, USD, GBP, CHF, JPY, or CNY
+4. Currency updates throughout the app instantly
+
+### Switching Language
+1. Go to **Settings** → **Preferences**
+2. Tap **Language**
+3. Choose Auto (system), français, or english
+4. App language changes immediately
 
 ## 🔒 Privacy & Security
 
@@ -196,34 +226,44 @@ Currently set to EUR. To change:
 - **No Account Required**: Works completely offline
 - **Data Control**: Full control over data export and deletion
 
-## 📊 Success Metrics (MVP)
+## 📊 Performance
 
-- ✅ Handle 1000+ transactions without performance issues
-- ✅ Transaction entry in under 10 seconds
-- ✅ <1% error rate (crashes, data corruption)
-- ✅ Accurate financial calculations
-- ✅ 30%+ retention rate (3+ days post-install)
+- ✅ Handles 1000+ transactions efficiently
+- ✅ Fast transaction entry (under 10 seconds)
+- ✅ Stable and reliable (<1% error rate)
+- ✅ 100% accurate financial calculations
+- ✅ Optimized for daily use
 
 ## 🐛 Known Issues
 
 - PDF export not yet implemented (CSV only)
 - iCloud backup/restore placeholders (not functional)
-- Multi-currency limited to display only (no conversion)
+- Multi-currency conversion not available (display only)
 - Charts require iOS 16+ (fallback list for iOS 15)
+- Language switching works best with app restart in some cases
 
 ## 🛣 Roadmap
 
-### Version 1.1
+### Version 1.1 ✅ (Current Release)
+- [x] Savings goals feature with progress tracking
+- [x] Dynamic language switching (English/French)
+- [x] Multi-currency support (6 currencies)
+- [x] Theme customization (System/Light/Dark)
+- [x] Enhanced icon selection (42+ icons)
+- [x] Custom app icon
+- [x] Build script for IPA generation
+
+### Version 1.2 (Next)
 - [ ] Core Data migration for better performance
 - [ ] Recurring transactions
 - [ ] Receipt photo attachments
 - [ ] Budget alerts/notifications
 
-### Version 1.2
+### Version 1.3
 - [ ] Home screen widgets
 - [ ] Advanced analytics
 - [ ] PDF export
-- [ ] Multi-currency support
+- [ ] Live currency exchange rates
 
 ### Version 2.0
 - [ ] Bank account integration
@@ -245,4 +285,4 @@ For questions or support, please open an issue in the repository.
 
 ---
 
-**Note**: This is an MVP (Minimum Viable Product). The focus is on core functionality and user experience. Future versions will expand capabilities based on user feedback.
+**Built with ❤️ using SwiftUI** - A modern, feature-rich expense tracker for iOS.
