@@ -80,6 +80,9 @@ class DataManager: ObservableObject {
             saveCategories()
         }
         LocalizationManager.shared.currentLanguage = language
+        
+        // Update recurring transactions on app launch
+        updateRecurringTransactions()
     }
     
     // MARK: - Load/Save
@@ -385,12 +388,19 @@ class DataManager: ObservableObject {
     func scheduleRecurringTransactions(from template: Transaction, recurrence: TransactionRecurrence) {
         guard let groupId = template.recurringGroupId else { return }
         
-        var currentDate = template.date
-        let maxFutureTransactions = 12 // Generate up to 12 future occurrences
-        var count = 0
+        // Only generate the next 2-3 months of occurrences
+        let maxFutureMonths = 3
+        let calendar = Calendar.current
+        let maxDate = calendar.date(byAdding: .month, value: maxFutureMonths, to: Date()) ?? Date()
         
-        while count < maxFutureTransactions {
-            guard let nextDate = recurrence.nextDate(after: currentDate) else { break }
+        var currentDate = template.date
+        
+        // Generate future occurrences up to maxDate
+        while let nextDate = recurrence.nextDate(after: currentDate) {
+            // Stop if beyond max date
+            if nextDate > maxDate {
+                break
+            }
             
             // Stop if we've reached the end date
             if let endDate = recurrence.endDate, nextDate > endDate {
@@ -411,13 +421,63 @@ class DataManager: ObservableObject {
                 recurringGroupId: groupId
             )
             
-            // Only add if date is in the future
-            if nextDate > Date() {
-                addTransaction(nextTransaction)
-            }
-            
+            addTransaction(nextTransaction)
             currentDate = nextDate
-            count += 1
+        }
+    }
+    
+    // Check and generate new recurring transactions (call on app launch)
+    func updateRecurringTransactions() {
+        let calendar = Calendar.current
+        let maxDate = calendar.date(byAdding: .month, value: 3, to: Date()) ?? Date()
+        
+        // Group transactions by recurringGroupId
+        var recurringGroups: [UUID: [Transaction]] = [:]
+        for transaction in transactions where transaction.isRecurring {
+            if let groupId = transaction.recurringGroupId {
+                recurringGroups[groupId, default: []].append(transaction)
+            }
+        }
+        
+        // For each recurring group, check if we need to generate more
+        for (groupId, group) in recurringGroups {
+            guard let template = group.first,
+                  let recurrence = template.recurrence else { continue }
+            
+            // Find the latest transaction in this group
+            guard let latestTransaction = group.max(by: { $0.date < $1.date }) else { continue }
+            
+            // Check if we need to generate more
+            var currentDate = latestTransaction.date
+            
+            while let nextDate = recurrence.nextDate(after: currentDate) {
+                if nextDate > maxDate { break }
+                if let endDate = recurrence.endDate, nextDate > endDate { break }
+                
+                // Check if this transaction already exists
+                let exists = transactions.contains { transaction in
+                    transaction.recurringGroupId == groupId &&
+                    calendar.isDate(transaction.date, inSameDayAs: nextDate)
+                }
+                
+                if !exists {
+                    let nextTransaction = Transaction(
+                        amount: template.amount,
+                        type: template.type,
+                        category: template.category,
+                        accountId: template.accountId,
+                        date: nextDate,
+                        notes: template.notes,
+                        toAccountId: template.toAccountId,
+                        isRecurring: true,
+                        recurrence: recurrence,
+                        recurringGroupId: groupId
+                    )
+                    addTransaction(nextTransaction)
+                }
+                
+                currentDate = nextDate
+            }
         }
     }
     
