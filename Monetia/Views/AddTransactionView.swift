@@ -221,6 +221,8 @@ struct EditTransactionView: View {
     @State private var selectedToAccount: Account?
     @State private var date = Date()
     @State private var notes = ""
+    @State private var isRecurringEnabled = false
+    @State private var showingDisableAlert = false
     
     var body: some View {
         NavigationView {
@@ -278,6 +280,45 @@ struct EditTransactionView: View {
                     TextEditor(text: $notes)
                         .frame(height: 80)
                 }
+                
+                // Recurrence control (only if transaction is recurring)
+                if transaction.isRecurring {
+                    Section(header: Text("recurrence")) {
+                        Toggle("recurrence_active", isOn: $isRecurringEnabled)
+                            .onChange(of: isRecurringEnabled) { newValue in
+                                if !newValue {
+                                    showingDisableAlert = true
+                                }
+                            }
+                        
+                        if let recurrence = transaction.recurrence {
+                            HStack {
+                                Text("frequency")
+                                Spacer()
+                                Text(recurrence.frequency.localizedName)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            if recurrence.frequency == .weekly, let dayOfWeek = recurrence.dayOfWeek {
+                                HStack {
+                                    Text("day_of_week")
+                                    Spacer()
+                                    Text(dayOfWeekName(dayOfWeek))
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            
+                            if recurrence.frequency == .monthly, let dayOfMonth = recurrence.dayOfMonth {
+                                HStack {
+                                    Text("day_of_month")
+                                    Spacer()
+                                    Text("\(dayOfMonth)")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle("edit_transaction")
             .navigationBarTitleDisplayMode(.inline)
@@ -297,6 +338,16 @@ struct EditTransactionView: View {
                 }
             }
         }
+        .alert("disable_recurrence_title", isPresented: $showingDisableAlert) {
+            Button("cancel", role: .cancel) {
+                isRecurringEnabled = true
+            }
+            Button("disable", role: .destructive) {
+                disableRecurrence()
+            }
+        } message: {
+            Text("disable_recurrence_message")
+        }
         .onAppear {
             amount = "\(transaction.amount)"
             selectedType = transaction.type
@@ -307,6 +358,7 @@ struct EditTransactionView: View {
             }
             date = transaction.date
             notes = transaction.notes ?? ""
+            isRecurringEnabled = transaction.isRecurring
         }
     }
     
@@ -339,5 +391,28 @@ struct EditTransactionView: View {
         Haptics.success()
         dataManager.updateTransaction(updatedTransaction)
         dismiss()
+    }
+    
+    private func disableRecurrence() {
+        guard let groupId = transaction.recurringGroupId else { return }
+        
+        // Delete all future transactions in this recurring group
+        dataManager.deleteFutureRecurringTransactions(groupId: groupId, after: transaction.date)
+        
+        // Update current transaction to non-recurring
+        var updatedTransaction = transaction
+        updatedTransaction.isRecurring = false
+        updatedTransaction.recurrence = nil
+        updatedTransaction.updatedAt = Date()
+        dataManager.updateTransaction(updatedTransaction)
+        
+        Haptics.medium()
+        dismiss()
+    }
+    
+    private func dayOfWeekName(_ day: Int) -> String {
+        let days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+        let index = day - 1
+        return NSLocalizedString(days[index], comment: "")
     }
 }

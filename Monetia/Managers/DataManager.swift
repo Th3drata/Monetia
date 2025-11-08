@@ -432,6 +432,26 @@ class DataManager: ObservableObject {
         }
     }
     
+    // Delete all future transactions in a recurring group
+    func deleteFutureRecurringTransactions(groupId: UUID, after date: Date) {
+        let toDelete = transactions.filter { transaction in
+            transaction.recurringGroupId == groupId && transaction.date > date
+        }
+        
+        // Revert balances for future transactions (shouldn't affect anything, but for consistency)
+        for transaction in toDelete {
+            revertAccountBalance(for: transaction)
+        }
+        
+        // Remove the transactions
+        transactions.removeAll { transaction in
+            transaction.recurringGroupId == groupId && transaction.date > date
+        }
+        
+        saveTransactions()
+        saveAccounts()
+    }
+    
     // Check and generate new recurring transactions (call on app launch)
     func updateRecurringTransactions() {
         let calendar = Calendar.current
