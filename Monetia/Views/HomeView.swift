@@ -83,6 +83,14 @@ struct HomeView: View {
                         } else {
                             ForEach(dataManager.accounts) { account in
                                 AccountRow(account: account)
+                                    .contextMenu {
+                                        Button(role: .destructive, action: {
+                                            Haptics.medium()
+                                            deleteAccount(account)
+                                        }) {
+                                            Label("delete", systemImage: "trash")
+                                        }
+                                    }
                             }
                         }
                     }
@@ -116,6 +124,10 @@ struct HomeView: View {
         formatter.numberStyle = .currency
         formatter.currencyCode = "EUR"
         return formatter.string(from: amount as NSDecimalNumber) ?? "€0.00"
+    }
+    
+    private func deleteAccount(_ account: Account) {
+        dataManager.deleteAccount(account)
     }
 }
 
