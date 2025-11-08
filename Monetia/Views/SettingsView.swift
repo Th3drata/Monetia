@@ -143,7 +143,11 @@ struct SettingsView: View {
                 if #available(iOS 16.0, *) {
                     BackupSheet(onBackupComplete: { lastBackupDate = Date() })
                 } else {
+                    #if canImport(UIKit)
                     BackupSheetLegacy(onBackupComplete: { lastBackupDate = Date() })
+                    #else
+                    BackupSheet(onBackupComplete: { lastBackupDate = Date() })
+                    #endif
                 }
             }
             .sheet(isPresented: $showingRestoreSheet) {
@@ -153,10 +157,17 @@ struct SettingsView: View {
                         showingRestoreAlert = true
                     })
                 } else {
+                    #if canImport(UIKit)
                     RestoreSheetLegacy(onRestoreComplete: { success in
                         restoreSuccess = success
                         showingRestoreAlert = true
                     })
+                    #else
+                    RestoreSheet(onRestoreComplete: { success in
+                        restoreSuccess = success
+                        showingRestoreAlert = true
+                    })
+                    #endif
                 }
             }
             .alert(isPresented: $showingRestoreAlert) {
@@ -512,6 +523,7 @@ struct BackupSheet: View {
     }
 }
 
+#if canImport(UIKit)
 struct BackupSheetLegacy: View {
     @EnvironmentObject var dataManager: DataManager
     @Environment(\.dismiss) var dismiss
@@ -590,6 +602,7 @@ struct BackupSheetLegacy: View {
         }
     }
 }
+#endif
 
 @available(iOS 16.0, *)
 struct RestoreSheet: View {
@@ -689,6 +702,7 @@ struct RestoreSheet: View {
     }
 }
 
+#if canImport(UIKit)
 struct RestoreSheetLegacy: View {
     @EnvironmentObject var dataManager: DataManager
     @Environment(\.dismiss) var dismiss
@@ -769,7 +783,9 @@ struct RestoreSheetLegacy: View {
         }
     }
 }
+#endif
 
+#if canImport(UIKit)
 struct DocumentPicker: UIViewControllerRepresentable {
     let onDocumentPicked: (URL) -> Void
     
@@ -799,3 +815,4 @@ struct DocumentPicker: UIViewControllerRepresentable {
         }
     }
 }
+#endif
