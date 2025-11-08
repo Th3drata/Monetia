@@ -6,6 +6,30 @@
 
 Monetia is a feature-rich financial management app that allows users to track income and expenses, visualize their financial situation, manage budgets, and maintain multiple accounts. The app emphasizes simplicity and efficiency while providing powerful insights into spending habits.
 
+## 📸 Screenshots
+
+<div align="center">
+
+### Home Dashboard
+![Home Screen](Screenshots/Home.png)
+
+### Transactions & Budget
+<p float="left">
+  <img src="Screenshots/Transactions.png" width="400" />
+  <img src="Screenshots/Buget.png" width="400" />
+</p>
+
+### Goals Management
+<p float="left">
+  <img src="Screenshots/Goal%20Exemple.png" width="400" />
+  <img src="Screenshots/Goal%20details.png" width="400" />
+</p>
+
+### Settings & Configuration
+![Settings Screen](Screenshots/Settings.png)
+
+</div>
+
 ## ✨ Features
 
 #### 1. Transaction Management
@@ -31,8 +55,9 @@ Monetia is a feature-rich financial management app that allows users to track in
 #### 4. Data Management
 - **Local Storage**: All data saved locally using UserDefaults (easily upgradeable to Core Data)
 - **CSV Export**: Export transaction data for external analysis
+- **JSON Backup/Restore**: Complete backup and restore functionality without requiring paid Apple Developer account 🆕
 - **Data Persistence**: Automatic saving of all changes
-- **iCloud Sync**: Placeholder for future cloud synchronization
+- **Last Backup Tracking**: View when your last backup was created
 
 #### 5. Savings Goals 🆕
 - **Goal Creation**: Set savings goals with custom icons and colors
@@ -198,6 +223,19 @@ When you first launch the app:
 3. Share or save the CSV file
 4. Import to Excel, Google Sheets, or other tools
 
+### Backing Up & Restoring Data
+1. **To Backup**:
+   - Go to **Settings** tab
+   - Tap **Backup to JSON**
+   - Save the JSON file to a secure location (iCloud Drive, Files, etc.)
+   - Last backup timestamp is displayed in Settings
+
+2. **To Restore**:
+   - Go to **Settings** tab
+   - Tap **Restore from JSON**
+   - Select your backup JSON file
+   - Confirm restoration (⚠️ replaces all current data)
+
 ## 🎨 Customization
 
 ### Adding Custom Categories
@@ -237,7 +275,6 @@ When you first launch the app:
 ## 🐛 Known Issues
 
 - PDF export not yet implemented (CSV only)
-- iCloud backup/restore placeholders (not functional)
 - Multi-currency conversion not available (display only)
 - Charts require iOS 16+ (fallback list for iOS 15)
 - Language switching works best with app restart in some cases
@@ -252,6 +289,7 @@ When you first launch the app:
 - [x] Enhanced icon selection (42+ icons)
 - [x] Custom app icon
 - [x] Build script for IPA generation
+- [x] JSON backup/restore functionality (no paid Apple Developer account needed)
 
 ### Version 1.2 (Next)
 - [ ] Core Data migration for better performance

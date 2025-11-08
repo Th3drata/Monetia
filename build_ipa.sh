@@ -8,11 +8,14 @@ set -e
 echo "🚀 Début du build Monetia..."
 
 # Configuration
-PROJECT_PATH="/Users/Oscar/Documents/Prog/SpendingTracker/SpendingTracker.xcodeproj"
+PROJECT_PATH="./Monetia.xcodeproj"
 SCHEME_NAME="Monetia"
 ARCHIVE_PATH="$HOME/Desktop/build/Monetia.xcarchive"
 EXPORT_PATH="$HOME/Desktop/build"
-TEAM_ID="4DVLAK4L8N"
+TEAM_ID=${TEAM_ID:?Veuillez définir votre TEAM_ID en variable d'environnement}
+
+
+
 
 # Créer le dossier build s'il n'existe pas
 echo "📁 Création du dossier build..."
@@ -21,7 +24,7 @@ mkdir -p "$HOME/Desktop/build"
 # Nettoyer l'ancien build
 echo "🧹 Nettoyage des anciens builds..."
 rm -rf "$ARCHIVE_PATH"
-rm -f "$EXPORT_PATH/SpendingTracker.ipa"
+rm -f "$EXPORT_PATH/Monetia.ipa"
 
 # Créer le fichier ExportOptions.plist
 echo "📝 Création de ExportOptions.plist..."

@@ -142,3 +142,23 @@
 "goal_completed" = "Goal Completed!";
 "add_money" = "Add Money";
 "new_total" = "New Total";
+
+/* Backup/Restore */
+"backup_json" = "Backup to JSON";
+"restore_json" = "Restore from JSON";
+"last_backup" = "Last Backup";
+"backup" = "Backup";
+"restore" = "Restore";
+"backup_ready" = "Backup Ready";
+"backup_instructions" = "Your data will be exported as a JSON file. Save it to a secure location.";
+"save_backup" = "Save Backup";
+"backup_error" = "Failed to create backup";
+"restore_title" = "Restore Data";
+"restore_warning" = "⚠️ This will replace all current data!";
+"restore_instructions" = "Select a backup JSON file to restore your data.";
+"select_backup_file" = "Select Backup File";
+"restore_success" = "Restore Successful";
+"restore_success_message" = "Your data has been restored successfully.";
+"restore_error" = "Restore Failed";
+"restore_error_message" = "The backup file is invalid or corrupted.";
+"ok" = "OK";

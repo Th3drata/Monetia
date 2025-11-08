@@ -142,3 +142,23 @@
 "goal_completed" = "Objectif Atteint !";
 "add_money" = "Ajouter de l'Argent";
 "new_total" = "Nouveau Total";
+
+/* Backup/Restore */
+"backup_json" = "Sauvegarde JSON";
+"restore_json" = "Restaurer JSON";
+"last_backup" = "Dernière Sauvegarde";
+"backup" = "Sauvegarde";
+"restore" = "Restaurer";
+"backup_ready" = "Sauvegarde Prête";
+"backup_instructions" = "Vos données seront exportées en JSON. Enregistrez-les dans un endroit sûr.";
+"save_backup" = "Enregistrer la Sauvegarde";
+"backup_error" = "Échec de la sauvegarde";
+"restore_title" = "Restaurer les Données";
+"restore_warning" = "⚠️ Cela remplacera toutes les données actuelles !";
+"restore_instructions" = "Sélectionnez un fichier de sauvegarde JSON pour restaurer vos données.";
+"select_backup_file" = "Sélectionner Fichier";
+"restore_success" = "Restauration Réussie";
+"restore_success_message" = "Vos données ont été restaurées avec succès.";
+"restore_error" = "Échec de la Restauration";
+"restore_error_message" = "Le fichier de sauvegarde est invalide ou corrompu.";
+"ok" = "OK";

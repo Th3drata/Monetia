@@ -246,23 +246,27 @@ enum TimePeriod: String, CaseIterable {
         
         switch self {
         case .thisWeek:
-            let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!
-            let endOfWeek = calendar.date(byAdding: .weekOfYear, value: 1, to: startOfWeek)!
+            let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)
+            let startOfWeek = calendar.date(from: components) ?? calendar.startOfDay(for: now)
+            let endOfWeek = calendar.date(byAdding: .weekOfYear, value: 1, to: startOfWeek) ?? now
             return DateInterval(start: startOfWeek, end: endOfWeek)
             
         case .thisMonth:
-            let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: now))!
-            let endOfMonth = calendar.date(byAdding: .month, value: 1, to: startOfMonth)!
+            let components = calendar.dateComponents([.year, .month], from: now)
+            let startOfMonth = calendar.date(from: components) ?? calendar.startOfDay(for: now)
+            let endOfMonth = calendar.date(byAdding: .month, value: 1, to: startOfMonth) ?? now
             return DateInterval(start: startOfMonth, end: endOfMonth)
             
         case .lastMonth:
-            let startOfThisMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: now))!
-            let startOfLastMonth = calendar.date(byAdding: .month, value: -1, to: startOfThisMonth)!
+            let thisMonthComponents = calendar.dateComponents([.year, .month], from: now)
+            let startOfThisMonth = calendar.date(from: thisMonthComponents) ?? calendar.startOfDay(for: now)
+            let startOfLastMonth = calendar.date(byAdding: .month, value: -1, to: startOfThisMonth) ?? startOfThisMonth
             return DateInterval(start: startOfLastMonth, end: startOfThisMonth)
             
         case .thisYear:
-            let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: now))!
-            let endOfYear = calendar.date(byAdding: .year, value: 1, to: startOfYear)!
+            let components = calendar.dateComponents([.year], from: now)
+            let startOfYear = calendar.date(from: components) ?? calendar.startOfDay(for: now)
+            let endOfYear = calendar.date(byAdding: .year, value: 1, to: startOfYear) ?? now
             return DateInterval(start: startOfYear, end: endOfYear)
         }
     }

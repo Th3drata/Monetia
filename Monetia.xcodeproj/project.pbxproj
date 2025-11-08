@@ -7,46 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		556227E62EBFA95600599D82 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556227E52EBFA95600599D82 /* LocalizationManager.swift */; };
 		556227EC2EBFABF300599D82 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556227EB2EBFABF300599D82 /* Media.xcassets */; };
-		55C4552C2EBF9F480038F6A9 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552B2EBF9F480038F6A9 /* Goal.swift */; };
-		55C4552F2EBF9F720038F6A9 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */; };
-		55C455302EBF9F720038F6A9 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552E2EBF9F720038F6A9 /* GoalsView.swift */; };
-		AA0000000000000000000001 /* MonetiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* MonetiaApp.swift */; };
-		AA0000000000000000000002 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000002 /* DataManager.swift */; };
-		AA0000000000000000000003 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000003 /* Category.swift */; };
-		AA0000000000000000000004 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* Budget.swift */; };
-		AA0000000000000000000005 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* Transaction.swift */; };
-		AA0000000000000000000006 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* Account.swift */; };
-		AA0000000000000000000007 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000007 /* SettingsView.swift */; };
-		AA0000000000000000000008 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000008 /* HomeView.swift */; };
-		AA0000000000000000000009 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000009 /* TransactionsView.swift */; };
-		AA000000000000000000000A /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000A /* BudgetView.swift */; };
-		AA000000000000000000000B /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000B /* AddTransactionView.swift */; };
-		AA000000000000000000000C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000C /* ContentView.swift */; };
-		AA000000000000000000000D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB000000000000000000000D /* Localizable.strings */; };
+		55B4F0CE2EBFB87A00A5D1C8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0B92EBFB87A00A5D1C8 /* DataManager.swift */; };
+		55B4F0CF2EBFB87A00A5D1C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C62EBFB87A00A5D1C8 /* ContentView.swift */; };
+		55B4F0D02EBFB87A00A5D1C8 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0CA2EBFB87A00A5D1C8 /* TransactionsView.swift */; };
+		55B4F0D12EBFB87A00A5D1C8 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0BD2EBFB87A00A5D1C8 /* Budget.swift */; };
+		55B4F0D22EBFB87A00A5D1C8 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C72EBFB87A00A5D1C8 /* GoalsView.swift */; };
+		55B4F0D32EBFB87A00A5D1C8 /* MonetiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0CC2EBFB87A00A5D1C8 /* MonetiaApp.swift */; };
+		55B4F0D42EBFB87A00A5D1C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C92EBFB87A00A5D1C8 /* SettingsView.swift */; };
+		55B4F0D52EBFB87A00A5D1C8 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0BF2EBFB87A00A5D1C8 /* Goal.swift */; };
+		55B4F0D62EBFB87A00A5D1C8 /* RecurringTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C02EBFB87A00A5D1C8 /* RecurringTransaction.swift */; };
+		55B4F0D72EBFB87A00A5D1C8 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C12EBFB87A00A5D1C8 /* Transaction.swift */; };
+		55B4F0D82EBFB87A00A5D1C8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0BC2EBFB87A00A5D1C8 /* Account.swift */; };
+		55B4F0D92EBFB87A00A5D1C8 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C42EBFB87A00A5D1C8 /* AddTransactionView.swift */; };
+		55B4F0DA2EBFB87A00A5D1C8 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C52EBFB87A00A5D1C8 /* BudgetView.swift */; };
+		55B4F0DB2EBFB87A00A5D1C8 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0BA2EBFB87A00A5D1C8 /* LocalizationManager.swift */; };
+		55B4F0DC2EBFB87A00A5D1C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0BE2EBFB87A00A5D1C8 /* Category.swift */; };
+		55B4F0DD2EBFB87A00A5D1C8 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C32EBFB87A00A5D1C8 /* AddGoalView.swift */; };
+		55B4F0DE2EBFB87A00A5D1C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C82EBFB87A00A5D1C8 /* HomeView.swift */; };
+		55B4F0DF2EBFB87A00A5D1C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55B4F0B72EBFB87A00A5D1C8 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		556227E52EBFA95600599D82 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		5510224B2EBFC031009C3335 /* Monetia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monetia.entitlements; sourceTree = "<group>"; };
 		556227EB2EBFABF300599D82 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		55C4552B2EBF9F480038F6A9 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
-		55C4552E2EBF9F720038F6A9 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
-		BB0000000000000000000001 /* MonetiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetiaApp.swift; sourceTree = "<group>"; };
-		BB0000000000000000000002 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		BB0000000000000000000003 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		BB0000000000000000000004 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
-		BB0000000000000000000005 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		BB0000000000000000000006 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		BB0000000000000000000007 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		BB0000000000000000000008 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		BB0000000000000000000009 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
-		BB000000000000000000000A /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
-		BB000000000000000000000B /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
-		BB000000000000000000000C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		BB000000000000000000000E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		BB000000000000000000000F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55B4F0B52EBFB87A00A5D1C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55B4F0B62EBFB87A00A5D1C8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55B4F0B92EBFB87A00A5D1C8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		55B4F0BA2EBFB87A00A5D1C8 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		55B4F0BC2EBFB87A00A5D1C8 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		55B4F0BD2EBFB87A00A5D1C8 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
+		55B4F0BE2EBFB87A00A5D1C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		55B4F0BF2EBFB87A00A5D1C8 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		55B4F0C02EBFB87A00A5D1C8 /* RecurringTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringTransaction.swift; sourceTree = "<group>"; };
+		55B4F0C12EBFB87A00A5D1C8 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		55B4F0C32EBFB87A00A5D1C8 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
+		55B4F0C42EBFB87A00A5D1C8 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
+		55B4F0C52EBFB87A00A5D1C8 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		55B4F0C62EBFB87A00A5D1C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		55B4F0C72EBFB87A00A5D1C8 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+		55B4F0C82EBFB87A00A5D1C8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		55B4F0C92EBFB87A00A5D1C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		55B4F0CA2EBFB87A00A5D1C8 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		55B4F0CC2EBFB87A00A5D1C8 /* MonetiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetiaApp.swift; sourceTree = "<group>"; };
 		CC0000000000000000000001 /* Monetia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monetia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,25 +64,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55B4F0B82EBFB87A00A5D1C8 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				55B4F0B72EBFB87A00A5D1C8 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		55B4F0BB2EBFB87A00A5D1C8 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				55B4F0B92EBFB87A00A5D1C8 /* DataManager.swift */,
+				55B4F0BA2EBFB87A00A5D1C8 /* LocalizationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		55B4F0C22EBFB87A00A5D1C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				55B4F0BC2EBFB87A00A5D1C8 /* Account.swift */,
+				55B4F0BD2EBFB87A00A5D1C8 /* Budget.swift */,
+				55B4F0BE2EBFB87A00A5D1C8 /* Category.swift */,
+				55B4F0BF2EBFB87A00A5D1C8 /* Goal.swift */,
+				55B4F0C02EBFB87A00A5D1C8 /* RecurringTransaction.swift */,
+				55B4F0C12EBFB87A00A5D1C8 /* Transaction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		55B4F0CB2EBFB87A00A5D1C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55B4F0C32EBFB87A00A5D1C8 /* AddGoalView.swift */,
+				55B4F0C42EBFB87A00A5D1C8 /* AddTransactionView.swift */,
+				55B4F0C52EBFB87A00A5D1C8 /* BudgetView.swift */,
+				55B4F0C62EBFB87A00A5D1C8 /* ContentView.swift */,
+				55B4F0C72EBFB87A00A5D1C8 /* GoalsView.swift */,
+				55B4F0C82EBFB87A00A5D1C8 /* HomeView.swift */,
+				55B4F0C92EBFB87A00A5D1C8 /* SettingsView.swift */,
+				55B4F0CA2EBFB87A00A5D1C8 /* TransactionsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		55B4F0CD2EBFB87A00A5D1C8 /* Monetia */ = {
+			isa = PBXGroup;
+			children = (
+				5510224B2EBFC031009C3335 /* Monetia.entitlements */,
+				55B4F0B82EBFB87A00A5D1C8 /* Localization */,
+				55B4F0BB2EBFB87A00A5D1C8 /* Managers */,
+				55B4F0C22EBFB87A00A5D1C8 /* Models */,
+				55B4F0CB2EBFB87A00A5D1C8 /* Views */,
+				55B4F0CC2EBFB87A00A5D1C8 /* MonetiaApp.swift */,
+			);
+			path = Monetia;
+			sourceTree = "<group>";
+		};
 		EE0000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				55B4F0CD2EBFB87A00A5D1C8 /* Monetia */,
 				556227EB2EBFABF300599D82 /* Media.xcassets */,
-				EE0000000000000000000002 /* Monetia */,
 				EE0000000000000000000003 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		EE0000000000000000000002 /* Monetia */ = {
-			isa = PBXGroup;
-			children = (
-				BB0000000000000000000001 /* MonetiaApp.swift */,
-				EE0000000000000000000004 /* Managers */,
-				EE0000000000000000000005 /* Models */,
-				EE0000000000000000000006 /* Views */,
-				EE0000000000000000000007 /* Localization */,
-			);
-			path = SpendingTracker;
 			sourceTree = "<group>";
 		};
 		EE0000000000000000000003 /* Products */ = {
@@ -88,50 +137,6 @@
 				CC0000000000000000000001 /* Monetia.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		EE0000000000000000000004 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				556227E52EBFA95600599D82 /* LocalizationManager.swift */,
-				BB0000000000000000000002 /* DataManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		EE0000000000000000000005 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				55C4552B2EBF9F480038F6A9 /* Goal.swift */,
-				BB0000000000000000000003 /* Category.swift */,
-				BB0000000000000000000004 /* Budget.swift */,
-				BB0000000000000000000005 /* Transaction.swift */,
-				BB0000000000000000000006 /* Account.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		EE0000000000000000000006 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */,
-				55C4552E2EBF9F720038F6A9 /* GoalsView.swift */,
-				BB0000000000000000000007 /* SettingsView.swift */,
-				BB0000000000000000000008 /* HomeView.swift */,
-				BB0000000000000000000009 /* TransactionsView.swift */,
-				BB000000000000000000000A /* BudgetView.swift */,
-				BB000000000000000000000B /* AddTransactionView.swift */,
-				BB000000000000000000000C /* ContentView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		EE0000000000000000000007 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				BB000000000000000000000D /* Localizable.strings */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				556227EC2EBFABF300599D82 /* Media.xcassets in Resources */,
-				AA000000000000000000000D /* Localizable.strings in Resources */,
+				55B4F0DF2EBFB87A00A5D1C8 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,33 +210,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55C4552F2EBF9F720038F6A9 /* AddGoalView.swift in Sources */,
-				55C455302EBF9F720038F6A9 /* GoalsView.swift in Sources */,
-				AA0000000000000000000001 /* MonetiaApp.swift in Sources */,
-				AA0000000000000000000002 /* DataManager.swift in Sources */,
-				AA0000000000000000000003 /* Category.swift in Sources */,
-				AA0000000000000000000004 /* Budget.swift in Sources */,
-				AA0000000000000000000005 /* Transaction.swift in Sources */,
-				AA0000000000000000000006 /* Account.swift in Sources */,
-				556227E62EBFA95600599D82 /* LocalizationManager.swift in Sources */,
-				AA0000000000000000000007 /* SettingsView.swift in Sources */,
-				AA0000000000000000000008 /* HomeView.swift in Sources */,
-				55C4552C2EBF9F480038F6A9 /* Goal.swift in Sources */,
-				AA0000000000000000000009 /* TransactionsView.swift in Sources */,
-				AA000000000000000000000A /* BudgetView.swift in Sources */,
-				AA000000000000000000000B /* AddTransactionView.swift in Sources */,
-				AA000000000000000000000C /* ContentView.swift in Sources */,
+				55B4F0CE2EBFB87A00A5D1C8 /* DataManager.swift in Sources */,
+				55B4F0CF2EBFB87A00A5D1C8 /* ContentView.swift in Sources */,
+				55B4F0D02EBFB87A00A5D1C8 /* TransactionsView.swift in Sources */,
+				55B4F0D12EBFB87A00A5D1C8 /* Budget.swift in Sources */,
+				55B4F0D22EBFB87A00A5D1C8 /* GoalsView.swift in Sources */,
+				55B4F0D32EBFB87A00A5D1C8 /* MonetiaApp.swift in Sources */,
+				55B4F0D42EBFB87A00A5D1C8 /* SettingsView.swift in Sources */,
+				55B4F0D52EBFB87A00A5D1C8 /* Goal.swift in Sources */,
+				55B4F0D62EBFB87A00A5D1C8 /* RecurringTransaction.swift in Sources */,
+				55B4F0D72EBFB87A00A5D1C8 /* Transaction.swift in Sources */,
+				55B4F0D82EBFB87A00A5D1C8 /* Account.swift in Sources */,
+				55B4F0D92EBFB87A00A5D1C8 /* AddTransactionView.swift in Sources */,
+				55B4F0DA2EBFB87A00A5D1C8 /* BudgetView.swift in Sources */,
+				55B4F0DB2EBFB87A00A5D1C8 /* LocalizationManager.swift in Sources */,
+				55B4F0DC2EBFB87A00A5D1C8 /* Category.swift in Sources */,
+				55B4F0DD2EBFB87A00A5D1C8 /* AddGoalView.swift in Sources */,
+				55B4F0DE2EBFB87A00A5D1C8 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BB000000000000000000000D /* Localizable.strings */ = {
+		55B4F0B72EBFB87A00A5D1C8 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BB000000000000000000000E /* en */,
-				BB000000000000000000000F /* fr */,
+				55B4F0B52EBFB87A00A5D1C8 /* en */,
+				55B4F0B62EBFB87A00A5D1C8 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Monetia/Monetia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
@@ -394,6 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Monetia/Monetia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;

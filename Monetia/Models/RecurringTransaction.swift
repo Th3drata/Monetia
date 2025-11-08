@@ -92,9 +92,9 @@ struct RecurringTransaction: Identifiable, Codable {
             type: type,
             category: category,
             accountId: accountId,
-            toAccountId: toAccountId,
             date: Date(),
-            notes: notes
+            notes: notes,
+            toAccountId: toAccountId
         )
     }
 }

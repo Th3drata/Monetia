@@ -455,4 +455,80 @@ class DataManager: ObservableObject {
         
         return csv
     }
+    
+    // MARK: - Backup/Restore
+    
+    struct FullBackup: Codable {
+        let accounts: [Account]
+        let transactions: [Transaction]
+        let categories: [Category]
+        let budgets: [Budget]
+        let goals: [Goal]
+        let recurringTransactions: [RecurringTransaction]
+        let theme: AppTheme
+        let currency: AppCurrency
+        let language: AppLanguage
+        let backupDate: Date
+        let appVersion: String
+    }
+    
+    func exportToJSON() -> String? {
+        let backup = FullBackup(
+            accounts: accounts,
+            transactions: transactions,
+            categories: categories,
+            budgets: budgets,
+            goals: goals,
+            recurringTransactions: recurringTransactions,
+            theme: theme,
+            currency: currency,
+            language: language,
+            backupDate: Date(),
+            appVersion: "1.1"
+        )
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        encoder.dateEncodingStrategy = .iso8601
+        
+        guard let data = try? encoder.encode(backup) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+    
+    func importFromJSON(_ jsonString: String) -> Bool {
+        guard let data = jsonString.data(using: .utf8) else { return false }
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        
+        guard let backup = try? decoder.decode(FullBackup.self, from: data) else { return false }
+        
+        // Restore all data
+        self.accounts = backup.accounts
+        self.transactions = backup.transactions
+        self.categories = backup.categories
+        self.budgets = backup.budgets
+        self.goals = backup.goals
+        self.recurringTransactions = backup.recurringTransactions
+        self.theme = backup.theme
+        self.currency = backup.currency
+        self.language = backup.language
+        
+        // Save to UserDefaults
+        saveAccounts()
+        saveTransactions()
+        saveCategories()
+        saveBudgets()
+        saveGoals()
+        saveRecurringTransactions()
+        save(theme, forKey: themeKey)
+        save(currency, forKey: currencyKey)
+        save(language, forKey: languageKey)
+        
+        // Update localization
+        LocalizationManager.shared.currentLanguage = language
+        objectWillChange.send()
+        
+        return true
+    }
 }

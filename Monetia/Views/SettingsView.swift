@@ -1,9 +1,15 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
     @EnvironmentObject var dataManager: DataManager
     @State private var showingExportSheet = false
     @State private var exportedCSV = ""
+    @State private var showingBackupSheet = false
+    @State private var showingRestoreSheet = false
+    @State private var showingRestoreAlert = false
+    @State private var restoreSuccess = false
+    @State private var lastBackupDate: Date?
     
     var body: some View {
         NavigationView {
@@ -16,17 +22,27 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Button(action: {}) {
+                    Button(action: backupToJSON) {
                         HStack {
-                            Image(systemName: "icloud.and.arrow.up")
-                            Text("backup_to_icloud")
+                            Image(systemName: "arrow.down.doc")
+                            Text("backup_json")
                         }
                     }
                     
-                    Button(action: {}) {
+                    Button(action: { showingRestoreSheet = true }) {
                         HStack {
-                            Image(systemName: "icloud.and.arrow.down")
-                            Text("restore_from_icloud")
+                            Image(systemName: "arrow.up.doc")
+                            Text("restore_json")
+                        }
+                    }
+                    
+                    if let lastBackup = lastBackupDate {
+                        HStack {
+                            Text("last_backup")
+                            Spacer()
+                            Text(lastBackup, style: .relative)
+                                .foregroundColor(.secondary)
+                                .font(.caption)
                         }
                     }
                 }
@@ -111,12 +127,52 @@ struct SettingsView: View {
             .sheet(isPresented: $showingExportSheet) {
                 ExportSheet(csvData: exportedCSV)
             }
+            .sheet(isPresented: $showingBackupSheet) {
+                if #available(iOS 16.0, *) {
+                    BackupSheet(onBackupComplete: { lastBackupDate = Date() })
+                } else {
+                    BackupSheetLegacy(onBackupComplete: { lastBackupDate = Date() })
+                }
+            }
+            .sheet(isPresented: $showingRestoreSheet) {
+                if #available(iOS 16.0, *) {
+                    RestoreSheet(onRestoreComplete: { success in
+                        restoreSuccess = success
+                        showingRestoreAlert = true
+                    })
+                } else {
+                    RestoreSheetLegacy(onRestoreComplete: { success in
+                        restoreSuccess = success
+                        showingRestoreAlert = true
+                    })
+                }
+            }
+            .alert(isPresented: $showingRestoreAlert) {
+                Alert(
+                    title: Text(restoreSuccess ? "restore_success" : "restore_error"),
+                    message: Text(restoreSuccess ? "restore_success_message" : "restore_error_message"),
+                    dismissButton: .default(Text("ok"))
+                )
+            }
+            .onAppear {
+                loadLastBackupDate()
+            }
         }
     }
     
     private func exportData() {
         exportedCSV = dataManager.exportToCSV()
         showingExportSheet = true
+    }
+    
+    private func backupToJSON() {
+        showingBackupSheet = true
+    }
+    
+    private func loadLastBackupDate() {
+        if let timestamp = UserDefaults.standard.object(forKey: "lastBackupDate") as? Date {
+            lastBackupDate = timestamp
+        }
     }
 }
 
@@ -350,5 +406,294 @@ struct AddCategoryView: View {
         )
         dataManager.addCategory(category)
         dismiss()
+    }
+}
+
+// MARK: - Backup/Restore Sheets
+
+@available(iOS 16.0, *)
+struct BackupSheet: View {
+    @EnvironmentObject var dataManager: DataManager
+    @Environment(\.dismiss) var dismiss
+    let onBackupComplete: () -> Void
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.down.doc.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.blue)
+                
+                Text("backup_ready")
+                    .font(.headline)
+                
+                Text("backup_instructions")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                if let jsonData = dataManager.exportToJSON() {
+                    ShareLink(
+                        item: jsonData,
+                        preview: SharePreview(
+                            "Monetia Backup",
+                            image: Image(systemName: "doc.text")
+                        )
+                    ) {
+                        Label("save_backup", systemImage: "square.and.arrow.up")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(.horizontal)
+                    .simultaneousGesture(TapGesture().onEnded {
+                        UserDefaults.standard.set(Date(), forKey: "lastBackupDate")
+                        onBackupComplete()
+                    })
+                } else {
+                    Text("backup_error")
+                        .foregroundColor(.red)
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("backup")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("done") {
+                dismiss()
+            })
+        }
+    }
+}
+
+struct BackupSheetLegacy: View {
+    @EnvironmentObject var dataManager: DataManager
+    @Environment(\.dismiss) var dismiss
+    let onBackupComplete: () -> Void
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.down.doc.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.blue)
+                
+                Text("backup_ready")
+                    .font(.headline)
+                
+                Text("backup_instructions")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                if let jsonData = dataManager.exportToJSON() {
+                    Button(action: {
+                        let activityVC = UIActivityViewController(activityItems: [jsonData], applicationActivities: nil)
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                           let window = windowScene.windows.first,
+                           let rootVC = window.rootViewController {
+                            rootVC.present(activityVC, animated: true)
+                            UserDefaults.standard.set(Date(), forKey: "lastBackupDate")
+                            onBackupComplete()
+                        }
+                    }) {
+                        Label("save_backup", systemImage: "square.and.arrow.up")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(.horizontal)
+                } else {
+                    Text("backup_error")
+                        .foregroundColor(.red)
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("backup")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("done") {
+                dismiss()
+            })
+        }
+    }
+}
+
+@available(iOS 16.0, *)
+struct RestoreSheet: View {
+    @EnvironmentObject var dataManager: DataManager
+    @Environment(\.dismiss) var dismiss
+    @State private var selectedFile: URL?
+    @State private var showingFilePicker = false
+    let onRestoreComplete: (Bool) -> Void
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.up.doc.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.orange)
+                
+                Text("restore_title")
+                    .font(.headline)
+                
+                Text("restore_warning")
+                    .font(.subheadline)
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Text("restore_instructions")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Button(action: { showingFilePicker = true }) {
+                    Label("select_backup_file", systemImage: "folder")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("restore")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("cancel") {
+                dismiss()
+            })
+            .fileImporter(
+                isPresented: $showingFilePicker,
+                allowedContentTypes: [.json, .text],
+                allowsMultipleSelection: false
+            ) { result in
+                handleFileSelection(result)
+            }
+        }
+    }
+    
+    private func handleFileSelection(_ result: Result<[URL], Error>) {
+        switch result {
+        case .success(let urls):
+            guard let url = urls.first else { return }
+            do {
+                let jsonString = try String(contentsOf: url, encoding: .utf8)
+                let success = dataManager.importFromJSON(jsonString)
+                onRestoreComplete(success)
+                dismiss()
+            } catch {
+                onRestoreComplete(false)
+                dismiss()
+            }
+        case .failure:
+            onRestoreComplete(false)
+            dismiss()
+        }
+    }
+}
+
+struct RestoreSheetLegacy: View {
+    @EnvironmentObject var dataManager: DataManager
+    @Environment(\.dismiss) var dismiss
+    @State private var showingDocumentPicker = false
+    let onRestoreComplete: (Bool) -> Void
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                Image(systemName: "arrow.up.doc.fill")
+                    .font(.system(size: 60))
+                    .foregroundColor(.orange)
+                
+                Text("restore_title")
+                    .font(.headline)
+                
+                Text("restore_warning")
+                    .font(.subheadline)
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Text("restore_instructions")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                Button(action: { showingDocumentPicker = true }) {
+                    Label("select_backup_file", systemImage: "folder")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("restore")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("cancel") {
+                dismiss()
+            })
+            .sheet(isPresented: $showingDocumentPicker) {
+                DocumentPicker { url in
+                    do {
+                        let jsonString = try String(contentsOf: url, encoding: .utf8)
+                        let success = dataManager.importFromJSON(jsonString)
+                        onRestoreComplete(success)
+                        dismiss()
+                    } catch {
+                        onRestoreComplete(false)
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct DocumentPicker: UIViewControllerRepresentable {
+    let onDocumentPicked: (URL) -> Void
+    
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.json, .text])
+        picker.delegate = context.coordinator
+        picker.allowsMultipleSelection = false
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onDocumentPicked: onDocumentPicked)
+    }
+    
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        let onDocumentPicked: (URL) -> Void
+        
+        init(onDocumentPicked: @escaping (URL) -> Void) {
+            self.onDocumentPicked = onDocumentPicked
+        }
+        
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            guard let url = urls.first else { return }
+            onDocumentPicked(url)
+        }
     }
 }
