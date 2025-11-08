@@ -12,6 +12,15 @@ struct AddTransactionView: View {
     @State private var date = Date()
     @State private var notes = ""
     
+    // Recurrence
+    @State private var isRecurring = false
+    @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
+    @State private var recurrenceInterval = 1
+    @State private var recurrenceEndDate: Date?
+    @State private var hasEndDate = false
+    @State private var selectedDayOfWeek = 1 // Sunday
+    @State private var selectedDayOfMonth = 1
+    
     var body: some View {
         NavigationView {
             Form {
@@ -73,6 +82,46 @@ struct AddTransactionView: View {
                     TextEditor(text: $notes)
                         .frame(height: 80)
                 }
+                
+                // Recurrence Section
+                Section(header: Text("recurrence")) {
+                    Toggle("is_recurring", isOn: $isRecurring)
+                    
+                    if isRecurring {
+                        Picker("frequency", selection: $recurrenceFrequency) {
+                            ForEach(RecurrenceFrequency.allCases, id: \.self) { freq in
+                                Text(freq.localizedName).tag(freq)
+                            }
+                        }
+                        
+                        // Day of week selection (for weekly)
+                        if recurrenceFrequency == .weekly {
+                            Picker("day_of_week", selection: $selectedDayOfWeek) {
+                                Text("sunday").tag(1)
+                                Text("monday").tag(2)
+                                Text("tuesday").tag(3)
+                                Text("wednesday").tag(4)
+                                Text("thursday").tag(5)
+                                Text("friday").tag(6)
+                                Text("saturday").tag(7)
+                            }
+                        }
+                        
+                        // Day of month selection (for monthly)
+                        if recurrenceFrequency == .monthly {
+                            Stepper("day_of_month: \(selectedDayOfMonth)", value: $selectedDayOfMonth, in: 1...31)
+                        }
+                        
+                        Toggle("has_end_date", isOn: $hasEndDate)
+                        
+                        if hasEndDate {
+                            DatePicker("end_date", selection: Binding(
+                                get: { recurrenceEndDate ?? Date() },
+                                set: { recurrenceEndDate = $0 }
+                            ), displayedComponents: [.date])
+                        }
+                    }
+                }
             }
             .navigationTitle("add_transaction")
             .navigationBarTitleDisplayMode(.inline)
@@ -119,6 +168,21 @@ struct AddTransactionView: View {
         
         let category = selectedCategory ?? Category.other
         
+        // Create recurrence if enabled
+        var recurrence: TransactionRecurrence? = nil
+        if isRecurring {
+            recurrence = TransactionRecurrence(
+                frequency: recurrenceFrequency,
+                interval: recurrenceInterval,
+                endDate: hasEndDate ? recurrenceEndDate : nil,
+                dayOfWeek: recurrenceFrequency == .weekly ? selectedDayOfWeek : nil,
+                dayOfMonth: recurrenceFrequency == .monthly ? selectedDayOfMonth : nil,
+                monthOfYear: nil
+            )
+        }
+        
+        let groupId = isRecurring ? UUID() : nil
+        
         let transaction = Transaction(
             amount: amountValue,
             type: selectedType,
@@ -126,11 +190,20 @@ struct AddTransactionView: View {
             accountId: account.id,
             date: date,
             notes: notes.isEmpty ? nil : notes,
-            toAccountId: selectedToAccount?.id
+            toAccountId: selectedToAccount?.id,
+            isRecurring: isRecurring,
+            recurrence: recurrence,
+            recurringGroupId: groupId
         )
         
         Haptics.success()
         dataManager.addTransaction(transaction)
+        
+        // If recurring, schedule future transactions
+        if isRecurring, let recurrence = recurrence {
+            dataManager.scheduleRecurringTransactions(from: transaction, recurrence: recurrence)
+        }
+        
         dismiss()
     }
 }

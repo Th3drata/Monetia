@@ -381,6 +381,46 @@ class DataManager: ObservableObject {
         }
     }
     
+    // Schedule recurring transactions from a template
+    func scheduleRecurringTransactions(from template: Transaction, recurrence: TransactionRecurrence) {
+        guard let groupId = template.recurringGroupId else { return }
+        
+        var currentDate = template.date
+        let maxFutureTransactions = 12 // Generate up to 12 future occurrences
+        var count = 0
+        
+        while count < maxFutureTransactions {
+            guard let nextDate = recurrence.nextDate(after: currentDate) else { break }
+            
+            // Stop if we've reached the end date
+            if let endDate = recurrence.endDate, nextDate > endDate {
+                break
+            }
+            
+            // Create next occurrence
+            let nextTransaction = Transaction(
+                amount: template.amount,
+                type: template.type,
+                category: template.category,
+                accountId: template.accountId,
+                date: nextDate,
+                notes: template.notes,
+                toAccountId: template.toAccountId,
+                isRecurring: true,
+                recurrence: recurrence,
+                recurringGroupId: groupId
+            )
+            
+            // Only add if date is in the future
+            if nextDate > Date() {
+                addTransaction(nextTransaction)
+            }
+            
+            currentDate = nextDate
+            count += 1
+        }
+    }
+    
     func getActiveBudgets() -> [Budget] {
         return budgets.filter { $0.isActive() }
     }

@@ -162,3 +162,23 @@
 "restore_error" = "Échec de la Restauration";
 "restore_error_message" = "Le fichier de sauvegarde est invalide ou corrompu.";
 "ok" = "OK";
+
+/* Recurrence */
+"recurrence" = "Récurrence";
+"is_recurring" = "Transaction Récurrente";
+"frequency" = "Fréquence";
+"recurrence_daily" = "Quotidien";
+"recurrence_weekly" = "Hebdomadaire";
+"recurrence_monthly" = "Mensuel";
+"recurrence_yearly" = "Annuel";
+"day_of_week" = "Jour de la Semaine";
+"sunday" = "Dimanche";
+"monday" = "Lundi";
+"tuesday" = "Mardi";
+"wednesday" = "Mercredi";
+"thursday" = "Jeudi";
+"friday" = "Vendredi";
+"saturday" = "Samedi";
+"day_of_month" = "Jour du Mois";
+"has_end_date" = "Définir Date de Fin";
+"end_date" = "Date de Fin";

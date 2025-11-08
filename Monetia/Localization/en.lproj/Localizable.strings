@@ -162,3 +162,23 @@
 "restore_error" = "Restore Failed";
 "restore_error_message" = "The backup file is invalid or corrupted.";
 "ok" = "OK";
+
+/* Recurrence */
+"recurrence" = "Recurrence";
+"is_recurring" = "Recurring Transaction";
+"frequency" = "Frequency";
+"recurrence_daily" = "Daily";
+"recurrence_weekly" = "Weekly";
+"recurrence_monthly" = "Monthly";
+"recurrence_yearly" = "Yearly";
+"day_of_week" = "Day of Week";
+"sunday" = "Sunday";
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"day_of_month" = "Day of Month";
+"has_end_date" = "Set End Date";
+"end_date" = "End Date";
