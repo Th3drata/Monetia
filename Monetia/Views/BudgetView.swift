@@ -43,6 +43,7 @@ struct BudgetView: View {
                 AddBudgetView()
             }
         }
+        .navigationViewStyle(.stack)
     }
     
     private func deleteBudget(at offsets: IndexSet) {

@@ -41,6 +41,7 @@ struct TransactionsView: View {
                 EditTransactionView(transaction: transaction)
             }
         }
+        .navigationViewStyle(.stack)
     }
     
     private var groupedTransactions: [Date: [Transaction]] {

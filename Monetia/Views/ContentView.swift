@@ -36,5 +36,8 @@ struct ContentView: View {
                 }
                 .tag(4)
         }
+        #if targetEnvironment(macCatalyst) || os(macOS)
+        .frame(minWidth: 800, minHeight: 600)
+        #endif
     }
 }

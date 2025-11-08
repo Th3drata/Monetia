@@ -45,6 +45,7 @@ struct GoalsView: View {
                 AddGoalView()
             }
         }
+        .navigationViewStyle(.stack)
     }
     
     private func deleteGoals(at offsets: IndexSet) {

@@ -181,6 +181,7 @@ struct SettingsView: View {
                 loadLastBackupDate()
             }
         }
+        .navigationViewStyle(.stack)
     }
     
     private func exportData() {

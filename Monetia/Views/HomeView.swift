@@ -98,6 +98,7 @@ struct HomeView: View {
                 AddAccountView()
             }
         }
+        .navigationViewStyle(.stack)
     }
     
     private var expensesByCategory: [(Category, Decimal)] {
