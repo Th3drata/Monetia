@@ -183,3 +183,5 @@
 "has_end_date" = "Définir Date de Fin";
 "end_date" = "Date de Fin";
 "scheduled" = "Planifié";
+"upcoming" = "À venir";
+"upcoming_transactions" = "Transactions à Venir (Ce Mois)";

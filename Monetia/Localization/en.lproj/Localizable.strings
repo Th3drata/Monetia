@@ -183,3 +183,5 @@
 "has_end_date" = "Set End Date";
 "end_date" = "End Date";
 "scheduled" = "Scheduled";
+"upcoming" = "Upcoming";
+"upcoming_transactions" = "Upcoming Transactions (This Month)";

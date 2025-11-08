@@ -4,6 +4,7 @@ struct TransactionsView: View {
     @EnvironmentObject var dataManager: DataManager
     @State private var showingAddTransaction = false
     @State private var selectedTransaction: Transaction?
+    @State private var showingUpcoming = false
     
     var body: some View {
         NavigationView {
@@ -25,6 +26,18 @@ struct TransactionsView: View {
             }
             .navigationTitle("transactions")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        Haptics.light()
+                        showingUpcoming = true
+                    }) {
+                        HStack {
+                            Image(systemName: "calendar.badge.clock")
+                            Text("upcoming")
+                        }
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         Haptics.light()
@@ -40,6 +53,9 @@ struct TransactionsView: View {
             .sheet(item: $selectedTransaction) { transaction in
                 EditTransactionView(transaction: transaction)
             }
+            .sheet(isPresented: $showingUpcoming) {
+                UpcomingTransactionsView()
+            }
         }
         .navigationViewStyle(.stack)
     }
@@ -48,7 +64,9 @@ struct TransactionsView: View {
         let calendar = Calendar.current
         var grouped: [Date: [Transaction]] = [:]
         
-        for transaction in dataManager.transactions.sorted(by: { $0.date > $1.date }) {
+        // Only show past/present transactions in main list
+        let now = Date()
+        for transaction in dataManager.transactions.filter({ $0.date <= now }).sorted(by: { $0.date > $1.date }) {
             let dateComponents = calendar.dateComponents([.year, .month, .day], from: transaction.date)
             if let date = calendar.date(from: dateComponents) {
                 grouped[date, default: []].append(transaction)
@@ -146,5 +164,54 @@ struct TransactionRow: View {
         case .expense: return .red
         case .transfer: return .blue
         }
+    }
+}
+
+struct UpcomingTransactionsView: View {
+    @EnvironmentObject var dataManager: DataManager
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(groupedUpcomingTransactions.keys.sorted(), id: \.self) { date in
+                    Section(header: Text(formattedDate(date))) {
+                        ForEach(groupedUpcomingTransactions[date] ?? []) { transaction in
+                            TransactionRow(transaction: transaction)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("upcoming_transactions")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button("done") {
+                dismiss()
+            })
+        }
+    }
+    
+    private var groupedUpcomingTransactions: [Date: [Transaction]] {
+        let calendar = Calendar.current
+        var grouped: [Date: [Transaction]] = [:]
+        
+        let now = Date()
+        let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1),
+                                       to: calendar.date(from: calendar.dateComponents([.year, .month], from: now))!) ?? now
+        
+        // Only show future transactions within current month
+        for transaction in dataManager.transactions.filter({ $0.date > now && $0.date <= endOfMonth }).sorted(by: { $0.date < $1.date }) {
+            let dateComponents = calendar.dateComponents([.year, .month, .day], from: transaction.date)
+            if let date = calendar.date(from: dateComponents) {
+                grouped[date, default: []].append(transaction)
+            }
+        }
+        
+        return grouped
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
     }
 }
