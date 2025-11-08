@@ -89,8 +89,21 @@ struct TransactionRow: View {
                 )
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(NSLocalizedString(transaction.category.name, comment: ""))
-                    .font(.headline)
+                HStack {
+                    Text(NSLocalizedString(transaction.category.name, comment: ""))
+                        .font(.headline)
+                    
+                    // Badge for future/scheduled transactions
+                    if transaction.date > Date() {
+                        Text("scheduled")
+                            .font(.caption2)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.orange.opacity(0.2))
+                            .foregroundColor(.orange)
+                            .cornerRadius(4)
+                    }
+                }
                 
                 if let notes = transaction.notes, !notes.isEmpty {
                     Text(notes)
@@ -107,10 +120,19 @@ struct TransactionRow: View {
             
             Spacer()
             
-            Text(formatAmount(transaction.amount, type: transaction.type))
-                .font(.headline)
-                .foregroundColor(amountColor(for: transaction.type))
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(formatAmount(transaction.amount, type: transaction.type))
+                    .font(.headline)
+                    .foregroundColor(transaction.date > Date() ? .secondary : amountColor(for: transaction.type))
+                
+                if transaction.isRecurring {
+                    Image(systemName: "repeat")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
         }
+        .opacity(transaction.date > Date() ? 0.6 : 1.0)
     }
     
     private func formatAmount(_ amount: Decimal, type: TransactionType) -> String {

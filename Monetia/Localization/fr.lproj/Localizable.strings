@@ -182,3 +182,4 @@
 "day_of_month" = "Jour du Mois";
 "has_end_date" = "Définir Date de Fin";
 "end_date" = "Date de Fin";
+"scheduled" = "Planifié";

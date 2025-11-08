@@ -182,3 +182,4 @@
 "day_of_month" = "Day of Month";
 "has_end_date" = "Set End Date";
 "end_date" = "End Date";
+"scheduled" = "Scheduled";

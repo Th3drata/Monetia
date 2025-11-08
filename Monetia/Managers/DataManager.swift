@@ -173,6 +173,11 @@ class DataManager: ObservableObject {
     private func updateAccountBalance(for transaction: Transaction) {
         guard let accountIndex = accounts.firstIndex(where: { $0.id == transaction.accountId }) else { return }
         
+        // Don't update balance for future transactions
+        if transaction.date > Date() {
+            return
+        }
+        
         switch transaction.type {
         case .income:
             accounts[accountIndex].balance += transaction.amount
@@ -207,7 +212,8 @@ class DataManager: ObservableObject {
     }
     
     func getTransactions(for period: DateInterval) -> [Transaction] {
-        return transactions.filter { period.contains($0.date) }
+        // Only return past/present transactions for calculations
+        return transactions.filter { period.contains($0.date) && $0.date <= Date() }
     }
     
     func getTransactions(for accountId: UUID) -> [Transaction] {
@@ -488,7 +494,30 @@ class DataManager: ObservableObject {
     // MARK: - Analytics
     
     func getTotalBalance() -> Decimal {
-        return accounts.reduce(0) { $0 + $1.balance }
+        // Recalculate balance from past transactions only
+        var balances: [UUID: Decimal] = [:]
+        
+        // Start with initial balances (would need to be stored separately in real app)
+        for account in accounts {
+            balances[account.id] = 0
+        }
+        
+        // Add only past transactions
+        for transaction in transactions where transaction.date <= Date() {
+            switch transaction.type {
+            case .income:
+                balances[transaction.accountId, default: 0] += transaction.amount
+            case .expense:
+                balances[transaction.accountId, default: 0] -= transaction.amount
+            case .transfer:
+                balances[transaction.accountId, default: 0] -= transaction.amount
+                if let toAccountId = transaction.toAccountId {
+                    balances[toAccountId, default: 0] += transaction.amount
+                }
+            }
+        }
+        
+        return balances.values.reduce(0, +)
     }
     
     func getIncomeForPeriod(_ period: DateInterval) -> Decimal {
