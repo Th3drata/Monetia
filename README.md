@@ -1,10 +1,10 @@
-# Spending Tracker - Money Flow
+# Monetia
 
 **Version 1.1** - A comprehensive iOS expense tracking application built with SwiftUI, designed to help users manage their personal finances with ease.
 
 ## 🎯 Project Overview
 
-Spending Tracker is a feature-rich financial management app that allows users to track income and expenses, visualize their financial situation, manage budgets, and maintain multiple accounts. The app emphasizes simplicity and efficiency while providing powerful insights into spending habits.
+Monetia is a feature-rich financial management app that allows users to track income and expenses, visualize their financial situation, manage budgets, and maintain multiple accounts. The app emphasizes simplicity and efficiency while providing powerful insights into spending habits.
 
 ## ✨ Features
 
@@ -76,7 +76,7 @@ Spending Tracker is a feature-rich financial management app that allows users to
 
 ### Project Structure
 ```
-SpendingTracker/
+Monetia/
 ├── SpendingTrackerApp.swift       # App entry point
 ├── Models/
 │   ├── Account.swift              # Account data model
@@ -138,12 +138,12 @@ SpendingTracker/
 1. **Clone or download the project**
 ```bash
 git clone <repository-url>
-cd SpendingTracker
+cd Monetia
 ```
 
 2. **Open in Xcode**
 ```bash
-open SpendingTracker.xcodeproj
+open Monetia.xcodeproj
 ```
 
 3. **Build and Run**

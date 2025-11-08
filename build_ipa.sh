@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Script de build IPA pour SpendingTracker
+# Script de build IPA pour Monetia
 # Crée un fichier IPA dans ~/Desktop/build/
 
 set -e
 
-echo "🚀 Début du build SpendingTracker..."
+echo "🚀 Début du build Monetia..."
 
 # Configuration
 PROJECT_PATH="/Users/Oscar/Documents/Prog/SpendingTracker/SpendingTracker.xcodeproj"
-SCHEME_NAME="SpendingTracker"
-ARCHIVE_PATH="$HOME/Desktop/build/SpendingTracker.xcarchive"
+SCHEME_NAME="Monetia"
+ARCHIVE_PATH="$HOME/Desktop/build/Monetia.xcarchive"
 EXPORT_PATH="$HOME/Desktop/build"
 TEAM_ID="4DVLAK4L8N"
 
@@ -70,14 +70,14 @@ xcodebuild -exportArchive \
     | grep -E '(▸|Exporting|Signing|error|warning|succeeded|failed)' || true
 
 # Vérifier que l'IPA a été créé
-if [ -f "$EXPORT_PATH/SpendingTracker.ipa" ]; then
+if [ -f "$EXPORT_PATH/Monetia.ipa" ]; then
     echo ""
     echo "✅ ✅ ✅ BUILD RÉUSSI! ✅ ✅ ✅"
     echo ""
-    echo "📱 IPA créé à: $EXPORT_PATH/SpendingTracker.ipa"
-    echo "📊 Taille: $(du -h "$EXPORT_PATH/SpendingTracker.ipa" | cut -f1)"
+    echo "📱 IPA créé à: $EXPORT_PATH/Monetia.ipa"
+    echo "📊 Taille: $(du -h "$EXPORT_PATH/Monetia.ipa" | cut -f1)"
     echo ""
-    ls -lh "$EXPORT_PATH/SpendingTracker.ipa"
+    ls -lh "$EXPORT_PATH/Monetia.ipa"
 else
     echo "❌ Erreur: L'export de l'IPA a échoué"
     exit 1

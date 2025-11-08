@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SpendingTrackerApp: App {
+struct MonetiaApp: App {
     @StateObject private var dataManager = DataManager.shared
     @StateObject private var localizationManager = LocalizationManager.shared
     

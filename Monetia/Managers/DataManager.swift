@@ -58,6 +58,7 @@ class DataManager: ObservableObject {
     @Published var categories: [Category] = []
     @Published var budgets: [Budget] = []
     @Published var goals: [Goal] = []
+    @Published var recurringTransactions: [RecurringTransaction] = []
     @Published var theme: AppTheme = .system
     @Published var currency: AppCurrency = .eur
     @Published var language: AppLanguage = .auto
@@ -67,6 +68,7 @@ class DataManager: ObservableObject {
     private let categoriesKey = "categories"
     private let budgetsKey = "budgets"
     private let goalsKey = "goals"
+    private let recurringTransactionsKey = "recurringTransactions"
     private let themeKey = "theme"
     private let currencyKey = "currency"
     private let languageKey = "language"
@@ -88,9 +90,13 @@ class DataManager: ObservableObject {
         categories = load([Category].self, forKey: categoriesKey) ?? []
         budgets = load([Budget].self, forKey: budgetsKey) ?? []
         goals = load([Goal].self, forKey: goalsKey) ?? []
+        recurringTransactions = load([RecurringTransaction].self, forKey: recurringTransactionsKey) ?? []
         theme = load(AppTheme.self, forKey: themeKey) ?? .system
         currency = load(AppCurrency.self, forKey: currencyKey) ?? .eur
         language = load(AppLanguage.self, forKey: languageKey) ?? .auto
+        
+        // Process recurring transactions on startup
+        processRecurringTransactions()
     }
     
     private func load<T: Decodable>(_ type: T.Type, forKey key: String) -> T? {
@@ -316,6 +322,63 @@ class DataManager: ObservableObject {
         formatter.numberStyle = .currency
         formatter.currencyCode = currency.rawValue
         return formatter
+    }
+    
+    // MARK: - Recurring Transactions
+    
+    func addRecurringTransaction(_ recurring: RecurringTransaction) {
+        recurringTransactions.append(recurring)
+        saveRecurringTransactions()
+    }
+    
+    func updateRecurringTransaction(_ recurring: RecurringTransaction) {
+        if let index = recurringTransactions.firstIndex(where: { $0.id == recurring.id }) {
+            recurringTransactions[index] = recurring
+            saveRecurringTransactions()
+        }
+    }
+    
+    func deleteRecurringTransaction(_ recurring: RecurringTransaction) {
+        recurringTransactions.removeAll { $0.id == recurring.id }
+        saveRecurringTransactions()
+    }
+    
+    func toggleRecurringTransaction(_ id: UUID) {
+        if let index = recurringTransactions.firstIndex(where: { $0.id == id }) {
+            recurringTransactions[index].isActive.toggle()
+            recurringTransactions[index].updatedAt = Date()
+            saveRecurringTransactions()
+        }
+    }
+    
+    private func saveRecurringTransactions() {
+        save(recurringTransactions, forKey: recurringTransactionsKey)
+    }
+    
+    func processRecurringTransactions() {
+        var updated = false
+        
+        for i in 0..<recurringTransactions.count {
+            var recurring = recurringTransactions[i]
+            
+            while recurring.shouldGenerate() {
+                // Generate transaction
+                let transaction = recurring.toTransaction()
+                addTransaction(transaction)
+                
+                // Update next occurrence
+                recurring.updateNextOccurrence()
+                updated = true
+            }
+            
+            if updated {
+                recurringTransactions[i] = recurring
+            }
+        }
+        
+        if updated {
+            saveRecurringTransactions()
+        }
     }
     
     func getActiveBudgets() -> [Budget] {

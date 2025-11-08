@@ -12,7 +12,7 @@
 		55C4552C2EBF9F480038F6A9 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552B2EBF9F480038F6A9 /* Goal.swift */; };
 		55C4552F2EBF9F720038F6A9 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */; };
 		55C455302EBF9F720038F6A9 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C4552E2EBF9F720038F6A9 /* GoalsView.swift */; };
-		AA0000000000000000000001 /* SpendingTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* SpendingTrackerApp.swift */; };
+		AA0000000000000000000001 /* MonetiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* MonetiaApp.swift */; };
 		AA0000000000000000000002 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000002 /* DataManager.swift */; };
 		AA0000000000000000000003 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000003 /* Category.swift */; };
 		AA0000000000000000000004 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000004 /* Budget.swift */; };
@@ -33,7 +33,7 @@
 		55C4552B2EBF9F480038F6A9 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		55C4552D2EBF9F720038F6A9 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		55C4552E2EBF9F720038F6A9 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
-		BB0000000000000000000001 /* SpendingTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTrackerApp.swift; sourceTree = "<group>"; };
+		BB0000000000000000000001 /* MonetiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonetiaApp.swift; sourceTree = "<group>"; };
 		BB0000000000000000000002 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BB0000000000000000000003 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		BB0000000000000000000004 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		BB000000000000000000000C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BB000000000000000000000E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BB000000000000000000000F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CC0000000000000000000001 /* SpendingTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendingTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0000000000000000000001 /* Monetia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monetia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,15 +65,15 @@
 			isa = PBXGroup;
 			children = (
 				556227EB2EBFABF300599D82 /* Media.xcassets */,
-				EE0000000000000000000002 /* SpendingTracker */,
+				EE0000000000000000000002 /* Monetia */,
 				EE0000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		EE0000000000000000000002 /* SpendingTracker */ = {
+		EE0000000000000000000002 /* Monetia */ = {
 			isa = PBXGroup;
 			children = (
-				BB0000000000000000000001 /* SpendingTrackerApp.swift */,
+				BB0000000000000000000001 /* MonetiaApp.swift */,
 				EE0000000000000000000004 /* Managers */,
 				EE0000000000000000000005 /* Models */,
 				EE0000000000000000000006 /* Views */,
@@ -85,7 +85,7 @@
 		EE0000000000000000000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC0000000000000000000001 /* SpendingTracker.app */,
+				CC0000000000000000000001 /* Monetia.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF0000000000000000000001 /* SpendingTracker */ = {
+		FF0000000000000000000001 /* Monetia */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXNativeTarget "SpendingTracker" */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXNativeTarget "Monetia" */;
 			buildPhases = (
 				DD0000000000000000000002 /* Sources */,
 				DD0000000000000000000001 /* Frameworks */,
@@ -149,9 +149,9 @@
 			);
 			dependencies = (
 			);
-			name = SpendingTracker;
-			productName = SpendingTracker;
-			productReference = CC0000000000000000000001 /* SpendingTracker.app */;
+			name = Monetia;
+			productName = Monetia;
+			productReference = CC0000000000000000000001 /* Monetia.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -169,7 +169,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FF0000000000000000000004 /* Build configuration list for PBXProject "SpendingTracker" */;
+			buildConfigurationList = FF0000000000000000000004 /* Build configuration list for PBXProject "Monetia" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,7 +183,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF0000000000000000000001 /* SpendingTracker */,
+				FF0000000000000000000001 /* Monetia */,
 			);
 		};
 /* End PBXProject section */
@@ -207,7 +207,7 @@
 			files = (
 				55C4552F2EBF9F720038F6A9 /* AddGoalView.swift in Sources */,
 				55C455302EBF9F720038F6A9 /* GoalsView.swift in Sources */,
-				AA0000000000000000000001 /* SpendingTrackerApp.swift in Sources */,
+				AA0000000000000000000001 /* MonetiaApp.swift in Sources */,
 				AA0000000000000000000002 /* DataManager.swift in Sources */,
 				AA0000000000000000000003 /* Category.swift in Sources */,
 				AA0000000000000000000004 /* Budget.swift in Sources */,
@@ -380,7 +380,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.spendingtracker.SpendingTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monetia.Monetia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -409,7 +409,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.spendingtracker.SpendingTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monetia.Monetia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -420,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FF0000000000000000000002 /* Build configuration list for PBXNativeTarget "SpendingTracker" */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXNativeTarget "Monetia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				GG0000000000000000000003 /* Debug */,
@@ -429,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF0000000000000000000004 /* Build configuration list for PBXProject "SpendingTracker" */ = {
+		FF0000000000000000000004 /* Build configuration list for PBXProject "Monetia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				GG0000000000000000000001 /* Debug */,
