@@ -24,6 +24,9 @@ struct TransactionsView: View {
                     }
                 }
             }
+            .refreshable {
+                await refresh()
+            }
             .navigationTitle("transactions")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -89,6 +92,17 @@ struct TransactionsView: View {
             let transaction = transactionsForDate[index]
             dataManager.deleteTransaction(transaction)
         }
+    }
+    
+    private func refresh() async {
+        // Update recurring transactions
+        dataManager.updateRecurringTransactions()
+        
+        // Add a small delay to show the loading indicator
+        try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
+        
+        // Haptic feedback on completion
+        Haptics.success()
     }
 }
 

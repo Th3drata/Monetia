@@ -120,6 +120,9 @@ struct HomeView: View {
                 }
                 .padding()
             }
+            .refreshable {
+                await refresh()
+            }
             .navigationTitle("home")
             .sheet(isPresented: $showingAddAccount) {
                 AddAccountView()
@@ -152,6 +155,17 @@ struct HomeView: View {
     private func moveAccount(from source: IndexSet, to destination: Int) {
         Haptics.light()
         dataManager.moveAccount(from: source, to: destination)
+    }
+    
+    private func refresh() async {
+        // Update recurring transactions
+        dataManager.updateRecurringTransactions()
+        
+        // Add a small delay to show the loading indicator
+        try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
+        
+        // Haptic feedback on completion
+        Haptics.success()
     }
 }
 
