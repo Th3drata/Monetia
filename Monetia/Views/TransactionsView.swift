@@ -139,7 +139,7 @@ struct TransactionRow: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
-                Text(formatAmount(transaction.amount, type: transaction.type))
+                Text(formatAmount(transaction.amount, type: transaction.type, accountId: transaction.accountId))
                     .font(.headline)
                     .foregroundColor(transaction.date > Date() ? .secondary : amountColor(for: transaction.type))
                 
@@ -153,9 +153,21 @@ struct TransactionRow: View {
         .opacity(transaction.date > Date() ? 0.6 : 1.0)
     }
     
-    private func formatAmount(_ amount: Decimal, type: TransactionType) -> String {
+    private func formatAmount(_ amount: Decimal, type: TransactionType, accountId: UUID) -> String {
         let sign = type == .income ? "+" : "-"
-        return "\(sign) \(amount)"
+        let currency = dataManager.getAccount(byId: accountId)?.currency ?? "EUR"
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = currency
+        formatter.maximumFractionDigits = 2
+        
+        if let formattedAmount = formatter.string(from: amount as NSDecimalNumber) {
+            // Remove the sign if present in formatted string and add our own
+            let cleanAmount = formattedAmount.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: "+", with: "")
+            return "\(sign) \(cleanAmount)"
+        }
+        
+        return "\(sign) \(amount) \(currency)"
     }
     
     private func amountColor(for type: TransactionType) -> Color {
