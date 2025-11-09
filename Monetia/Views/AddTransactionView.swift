@@ -89,8 +89,7 @@ struct AddTransactionView: View {
                 }
                 
                 // Location Section
-                // TODO: Add LocationPickerView.swift to Xcode project to enable
-                /*
+                
                 Section(header: Text("location")) {
                     if let location = selectedLocation {
                         VStack(alignment: .leading, spacing: 8) {
@@ -122,7 +121,7 @@ struct AddTransactionView: View {
                         }
                     }
                 }
-                */
+                
                 
                 // Recurrence Section
                 Section(header: Text("recurrence")) {

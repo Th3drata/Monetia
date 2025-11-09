@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		554DDED62EC0CE4D00A551E6 /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DDED52EC0CE4D00A551E6 /* LocationPickerView.swift */; };
+		554DDED92EC0CE6D00A551E6 /* LocationSearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DDED72EC0CE6D00A551E6 /* LocationSearchHelper.swift */; };
 		556227EC2EBFABF300599D82 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556227EB2EBFABF300599D82 /* Media.xcassets */; };
 		55B4F0CE2EBFB87A00A5D1C8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0B92EBFB87A00A5D1C8 /* DataManager.swift */; };
 		55B4F0CF2EBFB87A00A5D1C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4F0C62EBFB87A00A5D1C8 /* ContentView.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		554DDED52EC0CE4D00A551E6 /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		554DDED72EC0CE6D00A551E6 /* LocationSearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchHelper.swift; sourceTree = "<group>"; };
 		556227EB2EBFABF300599D82 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		55B4F0B52EBFB87A00A5D1C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55B4F0B62EBFB87A00A5D1C8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -63,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		554DDED82EC0CE6D00A551E6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				554DDED72EC0CE6D00A551E6 /* LocationSearchHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		55B4F0B82EBFB87A00A5D1C8 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +108,7 @@
 		55B4F0CB2EBFB87A00A5D1C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				554DDED52EC0CE4D00A551E6 /* LocationPickerView.swift */,
 				55B4F0C32EBFB87A00A5D1C8 /* AddGoalView.swift */,
 				55B4F0C42EBFB87A00A5D1C8 /* AddTransactionView.swift */,
 				55B4F0C52EBFB87A00A5D1C8 /* BudgetView.swift */,
@@ -111,6 +124,7 @@
 		55B4F0CD2EBFB87A00A5D1C8 /* Monetia */ = {
 			isa = PBXGroup;
 			children = (
+				554DDED82EC0CE6D00A551E6 /* Helpers */,
 				55B4F0B82EBFB87A00A5D1C8 /* Localization */,
 				55B4F0BB2EBFB87A00A5D1C8 /* Managers */,
 				55B4F0C22EBFB87A00A5D1C8 /* Models */,
@@ -209,6 +223,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				55B4F0CE2EBFB87A00A5D1C8 /* DataManager.swift in Sources */,
+				554DDED62EC0CE4D00A551E6 /* LocationPickerView.swift in Sources */,
+				554DDED92EC0CE6D00A551E6 /* LocationSearchHelper.swift in Sources */,
 				55B4F0CF2EBFB87A00A5D1C8 /* ContentView.swift in Sources */,
 				55B4F0D02EBFB87A00A5D1C8 /* TransactionsView.swift in Sources */,
 				55B4F0D12EBFB87A00A5D1C8 /* Budget.swift in Sources */,

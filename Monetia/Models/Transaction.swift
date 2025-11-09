@@ -97,11 +97,11 @@ struct TransactionRecurrence: Codable {
         case .weekly:
             components.weekOfYear = interval
             if let dayOfWeek = dayOfWeek {
-                var nextDate = calendar.date(byAdding: components, to: date) ?? date
+                let tempDate = calendar.date(byAdding: components, to: date) ?? date
                 // Adjust to correct day of week
-                let currentWeekday = calendar.component(.weekday, from: nextDate)
+                let currentWeekday = calendar.component(.weekday, from: tempDate)
                 let daysToAdd = (dayOfWeek - currentWeekday + 7) % 7
-                nextDate = calendar.date(byAdding: .day, value: daysToAdd, to: nextDate) ?? nextDate
+                let nextDate = calendar.date(byAdding: .day, value: daysToAdd, to: tempDate) ?? tempDate
                 return nextDate
             }
             
