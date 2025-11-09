@@ -64,7 +64,7 @@ struct HomeView: View {
                     }
                     
                     // Accounts List
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 0) {
                         HStack {
                             Text("accounts")
                                 .font(.headline)
@@ -73,7 +73,9 @@ struct HomeView: View {
                             
                             Button(action: {
                                 Haptics.light()
-                                isEditingAccounts.toggle()
+                                withAnimation {
+                                    isEditingAccounts.toggle()
+                                }
                             }) {
                                 Image(systemName: isEditingAccounts ? "checkmark.circle.fill" : "arrow.up.arrow.down.circle")
                                     .foregroundColor(isEditingAccounts ? .green : .blue)
@@ -84,28 +86,34 @@ struct HomeView: View {
                                     .foregroundColor(.blue)
                             }
                         }
+                        .padding()
                         
                         if dataManager.accounts.isEmpty {
                             Text("no_accounts")
                                 .foregroundColor(.secondary)
                                 .padding()
                         } else {
-                            ForEach(dataManager.accounts) { account in
-                                AccountRow(account: account)
-                                    .contentShape(Rectangle())
-                                    .contextMenu {
-                                        Button(role: .destructive, action: {
-                                            Haptics.medium()
-                                            deleteAccount(account)
-                                        }) {
-                                            Label("delete", systemImage: "trash")
+                            List {
+                                ForEach(dataManager.accounts) { account in
+                                    AccountRow(account: account)
+                                        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                        .listRowBackground(Color.clear)
+                                        .contextMenu {
+                                            Button(role: .destructive, action: {
+                                                Haptics.medium()
+                                                deleteAccount(account)
+                                            }) {
+                                                Label("delete", systemImage: "trash")
+                                            }
                                         }
-                                    }
+                                }
+                                .onMove(perform: moveAccount)
                             }
-                            .onMove(perform: isEditingAccounts ? moveAccount : nil)
+                            .listStyle(.plain)
+                            .frame(height: CGFloat(dataManager.accounts.count * 70))
+                            .environment(\.editMode, isEditingAccounts ? .constant(.active) : .constant(.inactive))
                         }
                     }
-                    .padding()
                     .background(Color(.systemBackground))
                     .cornerRadius(12)
                     .shadow(radius: 2)
