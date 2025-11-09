@@ -154,6 +154,7 @@ class LocationSearchHelper: NSObject, ObservableObject {
     
     private let completer = MKLocalSearchCompleter()
     private var cancellables = Set<AnyCancellable>()
+    private var isSelectingLocation = false
     
     override init() {
         super.init()
@@ -164,10 +165,11 @@ class LocationSearchHelper: NSObject, ObservableObject {
         $searchQuery
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
             .sink { [weak self] query in
+                guard let self = self, !self.isSelectingLocation else { return }
                 if query.isEmpty {
-                    self?.searchResults = []
+                    self.searchResults = []
                 } else {
-                    self?.completer.queryFragment = query
+                    self.completer.queryFragment = query
                 }
             }
             .store(in: &cancellables)
@@ -178,7 +180,8 @@ class LocationSearchHelper: NSObject, ObservableObject {
         let search = MKLocalSearch(request: searchRequest)
         
         search.start { [weak self] response, error in
-            guard let response = response,
+            guard let self = self,
+                  let response = response,
                   let mapItem = response.mapItems.first else {
                 return
             }
@@ -195,22 +198,33 @@ class LocationSearchHelper: NSObject, ObservableObject {
             .compactMap { $0 }
             .joined(separator: ", ")
             
-            self?.selectedLocation = Location(
+            self.selectedLocation = Location(
                 name: name,
                 address: address.isEmpty ? completion.subtitle : address,
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude
             )
             
-            self?.searchQuery = name
-            self?.searchResults = []
+            // Prevent triggering search when updating query
+            self.isSelectingLocation = true
+            self.searchQuery = name
+            self.searchResults = []
+            
+            // Re-enable search after a short delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.isSelectingLocation = false
+            }
         }
     }
     
     func clearSelection() {
         selectedLocation = nil
+        isSelectingLocation = true
         searchQuery = ""
         searchResults = []
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.isSelectingLocation = false
+        }
     }
 }
 

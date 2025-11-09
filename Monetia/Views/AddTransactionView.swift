@@ -182,13 +182,13 @@ struct AddTransactionView: View {
             }
         }
         // TODO: Uncomment when LocationPickerView is added to Xcode project
-        /*
+        
         .sheet(isPresented: $showingLocationPicker) {
             LocationPickerView { location in
                 selectedLocation = location
             }
         }
-        */
+        
         .onAppear {
             if selectedAccount == nil, let firstAccount = dataManager.accounts.first {
                 selectedAccount = firstAccount
@@ -343,7 +343,7 @@ struct EditTransactionView: View {
                 
                 // Location Section
                 // TODO: Add LocationPickerView.swift to Xcode project to enable
-                /*
+                
                 Section(header: Text("location")) {
                     if let location = selectedLocation {
                         VStack(alignment: .leading, spacing: 8) {
@@ -375,7 +375,7 @@ struct EditTransactionView: View {
                         }
                     }
                 }
-                */
+                
                 
                 // Recurrence control (only if transaction is recurring)
                 if transaction.isRecurring {
@@ -445,13 +445,13 @@ struct EditTransactionView: View {
             Text("disable_recurrence_message")
         }
         // TODO: Uncomment when LocationPickerView is added to Xcode project
-        /*
+        
         .sheet(isPresented: $showingLocationPicker) {
             LocationPickerView { location in
                 selectedLocation = location
             }
         }
-        */
+        
         .onAppear {
             amount = "\(transaction.amount)"
             selectedType = transaction.type
