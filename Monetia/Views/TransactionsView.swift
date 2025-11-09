@@ -222,7 +222,7 @@ struct UpcomingTransactionsView: View {
         
         let now = Date()
         // Show next 3 months instead of just current month
-        let endDate = calendar.date(byAdding: .month, value: 3, to: now) ?? now
+        let endDate = calendar.date(byAdding: .month, value: 1, to: now) ?? now
         
         // Show future transactions within next 3 months
         for transaction in dataManager.transactions.filter({ $0.date > now && $0.date <= endDate }).sorted(by: { $0.date < $1.date }) {
