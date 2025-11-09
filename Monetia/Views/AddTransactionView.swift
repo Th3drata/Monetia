@@ -1,4 +1,5 @@
 import SwiftUI
+import MapKit
 
 struct AddTransactionView: View {
     @EnvironmentObject var dataManager: DataManager
@@ -20,6 +21,10 @@ struct AddTransactionView: View {
     @State private var hasEndDate = false
     @State private var selectedDayOfWeek = 1 // Sunday
     @State private var selectedDayOfMonth = 1
+    
+    // Location
+    @State private var selectedLocation: Location?
+    @State private var showingLocationPicker = false
     
     var body: some View {
         NavigationView {
@@ -83,6 +88,42 @@ struct AddTransactionView: View {
                         .frame(height: 80)
                 }
                 
+                // Location Section
+                // TODO: Add LocationPickerView.swift to Xcode project to enable
+                /*
+                Section(header: Text("location")) {
+                    if let location = selectedLocation {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Image(systemName: "mappin.circle.fill")
+                                    .foregroundColor(.red)
+                                Text(location.name)
+                                    .font(.headline)
+                                Spacer()
+                                Button(action: {
+                                    Haptics.light()
+                                    selectedLocation = nil
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            Text(location.address)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
+                    } else {
+                        Button(action: {
+                            Haptics.light()
+                            showingLocationPicker = true
+                        }) {
+                            Label("add_location", systemImage: "plus.circle")
+                        }
+                    }
+                }
+                */
+                
                 // Recurrence Section
                 Section(header: Text("recurrence")) {
                     Toggle("is_recurring", isOn: $isRecurring)
@@ -141,6 +182,14 @@ struct AddTransactionView: View {
                 }
             }
         }
+        // TODO: Uncomment when LocationPickerView is added to Xcode project
+        /*
+        .sheet(isPresented: $showingLocationPicker) {
+            LocationPickerView { location in
+                selectedLocation = location
+            }
+        }
+        */
         .onAppear {
             if selectedAccount == nil, let firstAccount = dataManager.accounts.first {
                 selectedAccount = firstAccount
@@ -197,7 +246,11 @@ struct AddTransactionView: View {
             toAccountId: selectedToAccount?.id,
             isRecurring: isRecurring,
             recurrence: recurrence,
-            recurringGroupId: groupId
+            recurringGroupId: groupId,
+            locationName: selectedLocation?.name,
+            locationAddress: selectedLocation?.address,
+            locationLatitude: selectedLocation?.latitude,
+            locationLongitude: selectedLocation?.longitude
         )
         
         Haptics.success()
@@ -227,6 +280,10 @@ struct EditTransactionView: View {
     @State private var notes = ""
     @State private var isRecurringEnabled = false
     @State private var showingDisableAlert = false
+    
+    // Location
+    @State private var selectedLocation: Location?
+    @State private var showingLocationPicker = false
     
     var body: some View {
         NavigationView {
@@ -284,6 +341,42 @@ struct EditTransactionView: View {
                     TextEditor(text: $notes)
                         .frame(height: 80)
                 }
+                
+                // Location Section
+                // TODO: Add LocationPickerView.swift to Xcode project to enable
+                /*
+                Section(header: Text("location")) {
+                    if let location = selectedLocation {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Image(systemName: "mappin.circle.fill")
+                                    .foregroundColor(.red)
+                                Text(location.name)
+                                    .font(.headline)
+                                Spacer()
+                                Button(action: {
+                                    Haptics.light()
+                                    selectedLocation = nil
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            Text(location.address)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
+                    } else {
+                        Button(action: {
+                            Haptics.light()
+                            showingLocationPicker = true
+                        }) {
+                            Label("add_location", systemImage: "plus.circle")
+                        }
+                    }
+                }
+                */
                 
                 // Recurrence control (only if transaction is recurring)
                 if transaction.isRecurring {
@@ -352,6 +445,14 @@ struct EditTransactionView: View {
         } message: {
             Text("disable_recurrence_message")
         }
+        // TODO: Uncomment when LocationPickerView is added to Xcode project
+        /*
+        .sheet(isPresented: $showingLocationPicker) {
+            LocationPickerView { location in
+                selectedLocation = location
+            }
+        }
+        */
         .onAppear {
             amount = "\(transaction.amount)"
             selectedType = transaction.type
@@ -363,6 +464,19 @@ struct EditTransactionView: View {
             date = transaction.date
             notes = transaction.notes ?? ""
             isRecurringEnabled = transaction.isRecurring
+            
+            // Load location if exists
+            if let name = transaction.locationName,
+               let address = transaction.locationAddress,
+               let latitude = transaction.locationLatitude,
+               let longitude = transaction.locationLongitude {
+                selectedLocation = Location(
+                    name: name,
+                    address: address,
+                    latitude: latitude,
+                    longitude: longitude
+                )
+            }
         }
     }
     
@@ -394,6 +508,10 @@ struct EditTransactionView: View {
         updatedTransaction.date = date
         updatedTransaction.notes = notes.isEmpty ? nil : notes
         updatedTransaction.toAccountId = selectedToAccount?.id
+        updatedTransaction.locationName = selectedLocation?.name
+        updatedTransaction.locationAddress = selectedLocation?.address
+        updatedTransaction.locationLatitude = selectedLocation?.latitude
+        updatedTransaction.locationLongitude = selectedLocation?.longitude
         updatedTransaction.updatedAt = Date()
         
         Haptics.success()

@@ -189,3 +189,10 @@
 "disable_recurrence_title" = "Disable Recurrence?";
 "disable_recurrence_message" = "This will delete all scheduled future transactions in this recurring series.";
 "disable" = "Disable";
+
+/* Location */
+"location" = "Location";
+"add_location" = "Add Location";
+"search_location" = "Search for a place";
+"search_location_prompt" = "Search for a location to add to this transaction";
+"remove_location" = "Remove Location";

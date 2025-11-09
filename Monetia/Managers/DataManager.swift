@@ -131,6 +131,11 @@ class DataManager: ObservableObject {
         saveAccounts()
     }
     
+    func moveAccount(from source: IndexSet, to destination: Int) {
+        accounts.move(fromOffsets: source, toOffset: destination)
+        saveAccounts()
+    }
+    
     private func saveAccounts() {
         save(accounts, forKey: accountsKey)
     }

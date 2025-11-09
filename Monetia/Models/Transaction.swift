@@ -19,6 +19,12 @@ struct Transaction: Identifiable, Codable {
     var recurrence: TransactionRecurrence?
     var recurringGroupId: UUID? // Links recurring instances together
     
+    // Location
+    var locationName: String?
+    var locationAddress: String?
+    var locationLatitude: Double?
+    var locationLongitude: Double?
+    
     init(id: UUID = UUID(), 
          amount: Decimal, 
          type: TransactionType, 
@@ -29,7 +35,11 @@ struct Transaction: Identifiable, Codable {
          toAccountId: UUID? = nil,
          isRecurring: Bool = false,
          recurrence: TransactionRecurrence? = nil,
-         recurringGroupId: UUID? = nil) {
+         recurringGroupId: UUID? = nil,
+         locationName: String? = nil,
+         locationAddress: String? = nil,
+         locationLatitude: Double? = nil,
+         locationLongitude: Double? = nil) {
         self.id = id
         self.amount = amount
         self.type = type
@@ -41,6 +51,10 @@ struct Transaction: Identifiable, Codable {
         self.isRecurring = isRecurring
         self.recurrence = recurrence
         self.recurringGroupId = recurringGroupId
+        self.locationName = locationName
+        self.locationAddress = locationAddress
+        self.locationLatitude = locationLatitude
+        self.locationLongitude = locationLongitude
         self.createdAt = Date()
         self.updatedAt = Date()
     }
@@ -116,5 +130,18 @@ enum RecurrenceFrequency: String, Codable, CaseIterable {
     
     var localizedName: String {
         NSLocalizedString("recurrence_\(rawValue)", comment: "")
+    }
+}
+
+// MARK: - Location
+
+struct Location: Codable, Equatable, Identifiable {
+    let name: String
+    let address: String
+    let latitude: Double
+    let longitude: Double
+    
+    var id: String {
+        "\(latitude),\(longitude)"
     }
 }

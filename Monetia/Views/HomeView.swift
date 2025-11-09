@@ -5,6 +5,7 @@ struct HomeView: View {
     @EnvironmentObject var dataManager: DataManager
     @State private var selectedPeriod: TimePeriod = .thisMonth
     @State private var showingAddAccount = false
+    @State private var isEditingAccounts = false
     
     var body: some View {
         NavigationView {
@@ -70,6 +71,14 @@ struct HomeView: View {
                             
                             Spacer()
                             
+                            Button(action: {
+                                Haptics.light()
+                                isEditingAccounts.toggle()
+                            }) {
+                                Image(systemName: isEditingAccounts ? "checkmark.circle.fill" : "arrow.up.arrow.down.circle")
+                                    .foregroundColor(isEditingAccounts ? .green : .blue)
+                            }
+                            
                             Button(action: { showingAddAccount = true }) {
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(.blue)
@@ -83,6 +92,7 @@ struct HomeView: View {
                         } else {
                             ForEach(dataManager.accounts) { account in
                                 AccountRow(account: account)
+                                    .contentShape(Rectangle())
                                     .contextMenu {
                                         Button(role: .destructive, action: {
                                             Haptics.medium()
@@ -92,6 +102,7 @@ struct HomeView: View {
                                         }
                                     }
                             }
+                            .onMove(perform: isEditingAccounts ? moveAccount : nil)
                         }
                     }
                     .padding()
@@ -128,6 +139,11 @@ struct HomeView: View {
     
     private func deleteAccount(_ account: Account) {
         dataManager.deleteAccount(account)
+    }
+    
+    private func moveAccount(from source: IndexSet, to destination: Int) {
+        Haptics.light()
+        dataManager.moveAccount(from: source, to: destination)
     }
 }
 
