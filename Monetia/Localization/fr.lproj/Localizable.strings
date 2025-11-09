@@ -184,7 +184,7 @@
 "end_date" = "Date de Fin";
 "scheduled" = "Planifié";
 "upcoming" = "À venir";
-"upcoming_transactions" = "Transactions à Venir (Ce Mois)";
+"upcoming_transactions" = "Transactions à Venir (3 Prochains Mois)";
 "recurrence_active" = "Récurrence Active";
 "disable_recurrence_title" = "Désactiver la Récurrence ?";
 "disable_recurrence_message" = "Cela supprimera toutes les transactions futures planifiées de cette série récurrente.";

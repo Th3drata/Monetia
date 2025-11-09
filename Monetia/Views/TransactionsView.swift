@@ -221,11 +221,11 @@ struct UpcomingTransactionsView: View {
         var grouped: [Date: [Transaction]] = [:]
         
         let now = Date()
-        let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1),
-                                       to: calendar.date(from: calendar.dateComponents([.year, .month], from: now))!) ?? now
+        // Show next 3 months instead of just current month
+        let endDate = calendar.date(byAdding: .month, value: 3, to: now) ?? now
         
-        // Only show future transactions within current month
-        for transaction in dataManager.transactions.filter({ $0.date > now && $0.date <= endOfMonth }).sorted(by: { $0.date < $1.date }) {
+        // Show future transactions within next 3 months
+        for transaction in dataManager.transactions.filter({ $0.date > now && $0.date <= endDate }).sorted(by: { $0.date < $1.date }) {
             let dateComponents = calendar.dateComponents([.year, .month, .day], from: transaction.date)
             if let date = calendar.date(from: dateComponents) {
                 grouped[date, default: []].append(transaction)

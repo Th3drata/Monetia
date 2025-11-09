@@ -184,7 +184,7 @@
 "end_date" = "End Date";
 "scheduled" = "Scheduled";
 "upcoming" = "Upcoming";
-"upcoming_transactions" = "Upcoming Transactions (This Month)";
+"upcoming_transactions" = "Upcoming Transactions (Next 3 Months)";
 "recurrence_active" = "Recurrence Active";
 "disable_recurrence_title" = "Disable Recurrence?";
 "disable_recurrence_message" = "This will delete all scheduled future transactions in this recurring series.";
