@@ -166,7 +166,33 @@ class DataManager: ObservableObject {
     
     func deleteTransaction(_ transaction: Transaction) {
         revertAccountBalance(for: transaction)
-        transactions.removeAll { $0.id == transaction.id }
+        
+        // If this is a recurring transaction, delete all future occurrences too
+        if transaction.isRecurring, let groupId = transaction.recurringGroupId {
+            // Get the date of the transaction being deleted
+            let deletedDate = transaction.date
+            
+            // Remove this transaction and all future ones in the same recurring group
+            let toDelete = transactions.filter { trans in
+                trans.recurringGroupId == groupId && trans.date >= deletedDate
+            }
+            
+            print("🗑️ Deleting recurring transaction group \(groupId)")
+            print("   Removing \(toDelete.count) transaction(s) from \(deletedDate)")
+            
+            // Revert balances for future transactions (shouldn't affect balance since they're future)
+            for trans in toDelete where trans.id != transaction.id {
+                revertAccountBalance(for: trans)
+            }
+            
+            transactions.removeAll { trans in
+                trans.recurringGroupId == groupId && trans.date >= deletedDate
+            }
+        } else {
+            // Just remove this single transaction
+            transactions.removeAll { $0.id == transaction.id }
+        }
+        
         saveTransactions()
         saveAccounts()
     }
