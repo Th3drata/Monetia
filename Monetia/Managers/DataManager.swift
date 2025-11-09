@@ -397,17 +397,26 @@ class DataManager: ObservableObject {
     
     // Schedule recurring transactions from a template
     func scheduleRecurringTransactions(from template: Transaction, recurrence: TransactionRecurrence) {
-        guard let groupId = template.recurringGroupId else { return }
+        guard let groupId = template.recurringGroupId else {
+            print("⚠️ No groupId for recurring transaction")
+            return
+        }
         
         // Only generate the next 2-3 months of occurrences
         let maxFutureMonths = 3
         let calendar = Calendar.current
         let maxDate = calendar.date(byAdding: .month, value: maxFutureMonths, to: Date()) ?? Date()
         
+        print("📅 Scheduling recurring transactions from \(template.date) to \(maxDate)")
+        print("   Frequency: \(recurrence.frequency)")
+        
         var currentDate = template.date
+        var count = 0
         
         // Generate future occurrences up to maxDate
         while let nextDate = recurrence.nextDate(after: currentDate) {
+            count += 1
+            print("   → Next occurrence #\(count): \(nextDate)")
             // Stop if beyond max date
             if nextDate > maxDate {
                 break
@@ -435,6 +444,8 @@ class DataManager: ObservableObject {
             addTransaction(nextTransaction)
             currentDate = nextDate
         }
+        
+        print("✅ Generated \(count) future recurring transactions")
     }
     
     // Delete all future transactions in a recurring group
