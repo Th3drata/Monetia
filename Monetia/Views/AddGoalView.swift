@@ -109,7 +109,10 @@ struct AddGoalView: View {
                 trailing: Button("save") {
                     saveGoal()
                 }
-                .disabled(name.isEmpty || Decimal(string: targetAmount) == nil || Decimal(string: targetAmount) ?? 0 <= 0)
+                .disabled({
+                    let normalized = targetAmount.replacingOccurrences(of: ",", with: ".")
+                    return name.isEmpty || Decimal(string: normalized) == nil || Decimal(string: normalized) ?? 0 <= 0
+                }())
             )
             .onAppear {
                 if let goal = goal {
@@ -123,7 +126,9 @@ struct AddGoalView: View {
     }
     
     private func saveGoal() {
-        guard let amount = Decimal(string: targetAmount) else { return }
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = targetAmount.replacingOccurrences(of: ",", with: ".")
+        guard let amount = Decimal(string: normalizedAmount) else { return }
         
         Haptics.success()
         

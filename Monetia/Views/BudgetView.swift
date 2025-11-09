@@ -198,7 +198,9 @@ struct AddBudgetView: View {
     
     private var isValid: Bool {
         guard !name.isEmpty else { return false }
-        guard let amountValue = Decimal(string: amount), amountValue > 0 else { return false }
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = amount.replacingOccurrences(of: ",", with: ".")
+        guard let amountValue = Decimal(string: normalizedAmount), amountValue > 0 else { return false }
         if !isOverallBudget && selectedCategory == nil {
             return false
         }
@@ -206,7 +208,9 @@ struct AddBudgetView: View {
     }
     
     private func saveBudget() {
-        guard let amountValue = Decimal(string: amount) else { return }
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = amount.replacingOccurrences(of: ",", with: ".")
+        guard let amountValue = Decimal(string: normalizedAmount) else { return }
         
         let budget = Budget(
             name: name,

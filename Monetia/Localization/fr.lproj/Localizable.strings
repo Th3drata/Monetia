@@ -172,13 +172,13 @@
 "recurrence_monthly" = "Mensuel";
 "recurrence_yearly" = "Annuel";
 "day_of_week" = "Jour de la Semaine";
-"sunday" = "Dimanche";
 "monday" = "Lundi";
 "tuesday" = "Mardi";
 "wednesday" = "Mercredi";
 "thursday" = "Jeudi";
 "friday" = "Vendredi";
 "saturday" = "Samedi";
+"sunday" = "Dimanche";
 "day_of_month" = "Jour du Mois";
 "has_end_date" = "Définir Date de Fin";
 "end_date" = "Date de Fin";

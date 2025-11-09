@@ -216,7 +216,9 @@ struct GoalDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showingAddMoney) {
             AddMoneySheet(goal: currentGoal ?? goal, amountToAdd: $amountToAdd) {
-                if let amount = Decimal(string: amountToAdd) {
+                // Replace comma with dot for decimal parsing (supports both European and US formats)
+                let normalizedAmount = amountToAdd.replacingOccurrences(of: ",", with: ".")
+                if let amount = Decimal(string: normalizedAmount) {
                     let wasCompleted = currentGoal?.isCompleted ?? false
                     dataManager.addMoneyToGoal(goalId: goal.id, amount: amount)
                     let isNowCompleted = dataManager.goals.first { $0.id == goal.id }?.isCompleted ?? false
@@ -262,7 +264,8 @@ struct AddMoneySheet: View {
                         Text("\(goal.currentAmount as NSDecimalNumber, formatter: dataManager.currencyFormatter)")
                     }
                     
-                    if let amount = Decimal(string: amountToAdd), amount > 0 {
+                    // Replace comma with dot for decimal parsing (supports both European and US formats)
+                    if let amount = Decimal(string: amountToAdd.replacingOccurrences(of: ",", with: ".")), amount > 0 {
                         HStack {
                             Text("new_total")
                             Spacer()
@@ -282,7 +285,10 @@ struct AddMoneySheet: View {
                 trailing: Button("add") {
                     onAdd()
                 }
-                .disabled(Decimal(string: amountToAdd) == nil || Decimal(string: amountToAdd) ?? 0 <= 0)
+                .disabled({
+                    let normalized = amountToAdd.replacingOccurrences(of: ",", with: ".")
+                    return Decimal(string: normalized) == nil || Decimal(string: normalized) ?? 0 <= 0
+                }())
             )
         }
     }

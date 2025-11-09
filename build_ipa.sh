@@ -12,10 +12,7 @@ PROJECT_PATH="./Monetia.xcodeproj"
 SCHEME_NAME="Monetia"
 ARCHIVE_PATH="$HOME/Desktop/build/Monetia.xcarchive"
 EXPORT_PATH="$HOME/Desktop/build"
-TEAM_ID=${TEAM_ID:?Veuillez définir votre TEAM_ID en variable d'environnement}
-
-
-
+TEAM_ID="4DVLAK4L8N"
 
 # Créer le dossier build s'il n'existe pas
 echo "📁 Création du dossier build..."

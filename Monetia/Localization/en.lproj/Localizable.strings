@@ -172,13 +172,13 @@
 "recurrence_monthly" = "Monthly";
 "recurrence_yearly" = "Yearly";
 "day_of_week" = "Day of Week";
-"sunday" = "Sunday";
 "monday" = "Monday";
 "tuesday" = "Tuesday";
 "wednesday" = "Wednesday";
 "thursday" = "Thursday";
 "friday" = "Friday";
 "saturday" = "Saturday";
+"sunday" = "Sunday";
 "day_of_month" = "Day of Month";
 "has_end_date" = "Set End Date";
 "end_date" = "End Date";

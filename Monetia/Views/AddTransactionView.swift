@@ -152,7 +152,9 @@ struct AddTransactionView: View {
     }
     
     private var isValid: Bool {
-        guard let amountValue = Decimal(string: amount), amountValue > 0 else { return false }
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = amount.replacingOccurrences(of: ",", with: ".")
+        guard let amountValue = Decimal(string: normalizedAmount), amountValue > 0 else { return false }
         guard selectedAccount != nil else { return false }
         
         if selectedType == .transfer {
@@ -163,7 +165,9 @@ struct AddTransactionView: View {
     }
     
     private func saveTransaction() {
-        guard let amountValue = Decimal(string: amount),
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = amount.replacingOccurrences(of: ",", with: ".")
+        guard let amountValue = Decimal(string: normalizedAmount),
               let account = selectedAccount else { return }
         
         let category = selectedCategory ?? Category.other
@@ -363,7 +367,9 @@ struct EditTransactionView: View {
     }
     
     private var isValid: Bool {
-        guard let amountValue = Decimal(string: amount), amountValue > 0 else { return false }
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = amount.replacingOccurrences(of: ",", with: ".")
+        guard let amountValue = Decimal(string: normalizedAmount), amountValue > 0 else { return false }
         guard selectedAccount != nil else { return false }
         
         if selectedType == .transfer {
@@ -374,7 +380,9 @@ struct EditTransactionView: View {
     }
     
     private func saveTransaction() {
-        guard let amountValue = Decimal(string: amount),
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedAmount = amount.replacingOccurrences(of: ",", with: ".")
+        guard let amountValue = Decimal(string: normalizedAmount),
               let account = selectedAccount,
               let category = selectedCategory else { return }
         

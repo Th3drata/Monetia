@@ -331,7 +331,9 @@ struct AddAccountView: View {
     }
     
     private func saveAccount() {
-        let balance = Decimal(string: initialBalance) ?? 0
+        // Replace comma with dot for decimal parsing (supports both European and US formats)
+        let normalizedBalance = initialBalance.replacingOccurrences(of: ",", with: ".")
+        let balance = Decimal(string: normalizedBalance) ?? 0
         let account = Account(
             name: name,
             type: selectedType,
