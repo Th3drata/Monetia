@@ -61,6 +61,15 @@ struct AddTransactionView: View {
                     }
                 }
                 
+                if selectedType == .transfer {
+                    Section(header: Text("category")) {
+                        HStack {
+                            Image(systemName: "arrow.right.arrow.left")
+                            Text("transfer")
+                        }
+                    }
+                }
+                
                 Section(header: Text("account")) {
                     Picker("from_account", selection: $selectedAccount) {
                         Text("select_account").tag(nil as Account?)
@@ -301,7 +310,7 @@ struct EditTransactionView: View {
                     .pickerStyle(.segmented)
                 }
                 
-                if selectedType != .transfer {
+                if selectedType == .transfer {
                     Section(header: Text("category")) {
                         Picker("category", selection: $selectedCategory) {
                             ForEach(dataManager.categories) { category in

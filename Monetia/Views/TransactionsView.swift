@@ -113,11 +113,11 @@ struct TransactionRow: View {
     var body: some View {
         HStack {
             Circle()
-                .fill(transaction.category.color)
+                .fill(transaction.type == .transfer ? Color.green.opacity(0.3) : transaction.category.color)
                 .frame(width: 40, height: 40)
                 .overlay(
-                    Image(systemName: transaction.category.icon)
-                        .foregroundColor(.white)
+                    Image(systemName: transaction.type == .transfer ? "arrow.right.arrow.left" : transaction.category.icon)
+                        .foregroundColor(transaction.type == .transfer ? .green : .white)
                 )
             
             VStack(alignment: .leading, spacing: 4) {

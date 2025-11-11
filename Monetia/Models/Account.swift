@@ -1,5 +1,7 @@
 import Foundation
 
+
+
 struct Account: Identifiable, Codable, Hashable {
     var id: UUID
     var name: String
@@ -25,6 +27,7 @@ enum AccountType: String, Codable, CaseIterable {
     case card = "card"
     case cash = "cash"
     case savings = "savings"
+    case crypto = "Crypto"
     
     var localizedName: String {
         switch self {
@@ -32,6 +35,7 @@ enum AccountType: String, Codable, CaseIterable {
         case .card: return NSLocalizedString("account_type_card", comment: "")
         case .cash: return NSLocalizedString("account_type_cash", comment: "")
         case .savings: return NSLocalizedString("account_type_savings", comment: "")
+        case .crypto: return NSLocalizedString("account_type_crypto", comment: "")
         }
     }
     
@@ -41,6 +45,7 @@ enum AccountType: String, Codable, CaseIterable {
         case .card: return "creditcard"
         case .cash: return "banknote"
         case .savings: return "dollarsign.circle"
+        case .crypto: return "bitcoinsign.circle"
         }
     }
 }
